@@ -1,3 +1,11 @@
 <div class="">
   <h1>top page</h1>
+  <%= link_to "商品登録", new_product_path %>
+  <table>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to "#{product.name}", product_path(product) %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
