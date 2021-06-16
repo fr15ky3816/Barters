@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <header class="bg-light" >
+      <% if customer_signed_in? %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"text-dark" %>
+        <%= link_to "マイページ", customer_path(current_customer) %>
+      <% else %>
+        <%= link_to "新規登録", new_customer_registration_path %>
+        <%= link_to "ログイン", new_customer_session_path %>
+      <% end %>
+      <%= link_to  root_path do %>
+        <%= image_tag "no_image.jpg", size: "70x70", class: "logo_image" %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,8 @@
+<h4>出品した商品</h4>
+<table>
+  <% @products.each do |product| %>
+  <tr>
+    <th><%= product.name %></th>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,9 @@
+<h1>マイページ</h1>
+
+<%= link_to "出品した商品", products_path %>
+<%= link_to "いいねした商品", customer_likes_index_path(current_customer) %>
+
+
+
+<%= link_to "プロフィール", customer_show_profile_path(current_customer) %>
+<%= link_to "本人情報", edit_customer_path(current_customer) %>

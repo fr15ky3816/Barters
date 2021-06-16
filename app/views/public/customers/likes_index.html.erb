@@ -1,0 +1,8 @@
+<h1>いいねした商品</h1>
+
+<% @customer.likes.each do |like| %>
+  <%= link_to product_path(like.product.id) do %>
+    <%= like.product.name %>
+    <%= attachment_image_tag like.product, :image1_id, format: 'jpeg', fallback: 'no_image.jpg', size: "150x150", class: "rounded" %>
+  <% end %>
+<% end %>

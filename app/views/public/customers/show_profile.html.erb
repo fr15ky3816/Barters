@@ -1,0 +1,13 @@
+<h4>プロフィール</h4>
+
+
+<%= form_with model: @customer, local: true do |f| %>
+  <h5>ショップ名</h5>
+  <%= f.text_field :shop_name %>
+  <h5>ショップ説明</h5>
+  <%= f.text_area :shop_description %>
+  <%= f.submit "変更をする", class: "btn btn-success my-2" %>
+<% end %>
+
+
+<%= link_to "編集ページ", edit_customer_path(current_customer) %>

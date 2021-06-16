@@ -1,0 +1,71 @@
+<% if flash[:failed] %>
+  <p class="alert alert-danger">
+    <%= flash[:failed] %>
+  </p>
+<% end %>
+
+<div class="container">
+  <div class="badge badge-light my-4">
+    <h3>本人情報登録</h3>
+  </div>
+
+    <%= form_with model: @customer, local:true do |f| %>
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"氏名"%>
+      </div>
+      <div class="col-8">
+        <%= f.text_field :customer_last_name %><%= f.text_field :customer_first_name, class:"ml-2" %>
+      </div>
+    </div>
+
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"フリガナ"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :customer_first_name_kane %><%= f.text_field :customer_last_name_kane, class:"ml-2"%>
+      </div>
+    </div>
+
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"郵便番号"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :postcode%>
+      </div>
+    </div>
+
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"住所"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :address,size:60%>
+      </div>
+    </div>
+
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"電話番号"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :phone_number%>
+      </div>
+    </div>
+
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"メールアドレス"%>
+      </div>
+      <div class="col-8">
+        <%= f.email_field :email,class:"mb-4"%><br>
+        <!--customers_retire_pathについては要相談？-->
+        <%= f.submit "編集内容を保存する",class:"btn btn-success"%>
+       
+      </div>
+    </div>
+    <%end%>
+
+</div>

@@ -1,3 +1,18 @@
-<div class="">
+<div class="container">
   <h1>top page</h1>
+  <%= link_to "商品登録", new_product_path, class:"btn btn-danger"%>
+  <div class="product_wrapper">
+    <% @products.each do |product| %>
+        <%= link_to product_path(product) do %>
+          <div class="product_block">
+            <div class="product">
+              <div class="products_image">
+                <%= attachment_image_tag product, :image1_id,  format: 'jpeg', fallback: 'no_image.jpg', size: '150x150', class: "rounded" %>
+              </div>
+              <p class="products_name"><%= product.name %></p>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
 </div>
