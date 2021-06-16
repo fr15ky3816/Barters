@@ -1,10 +1,10 @@
-class ProductsController < ApplicationController
+class Public::ProductsController < ApplicationController
 
   def new
     if customer_signed_in?
       @product = Product.new
     else
-      redirect_to root_path
+      redirect_to new_customer_registration_path
     end
   end
 
@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
   end
 
   def index
+    @products = Product.where(id: current_customer.id)
   end
 
   def show
@@ -32,6 +33,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:genre_id, :name, :description, :is_active, :image1_id, :image2_id, :image3_id)
+    params.require(:product).permit(:genre_id, :name, :description, :is_active, :image1_id, :image2_id, :image3_id, :customer_id)
   end
 end

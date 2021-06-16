@@ -2,7 +2,7 @@
 
 
 <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
+  <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :"お客様氏名（姓）" %><br />
@@ -48,4 +48,4 @@
   </div>
 <% end %>
 
-<%= render "customers/shared/links" %>
+<%= render "public/shared/links" %>
