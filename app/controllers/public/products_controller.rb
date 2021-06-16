@@ -21,6 +21,7 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    @like = Like.new
   end
 
   def destroy

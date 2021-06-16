@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :customers
     get "/customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
-    resources :products, only: [:new, :create, :index, :show, :destroy]
+    get "/customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
+    resources :products, only: [:new, :create, :index, :show, :destroy] do
+      resources :likes, only: [:create, :destroy]
+    end
     get "/product/complete" => "products#complete"
   end
 

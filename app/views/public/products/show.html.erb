@@ -4,13 +4,24 @@
       <%= @product.name %>
     </div>
     <div class="product_image">
-      <%= attachment_image_tag @product, :image1_id, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded main-image" %>
+      <%= attachment_image_tag @product, :image1_id, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %>
     </div>
     <div class="product_description">
       <%= @product.description %>
     </div>
-    
+
     <%= @product.customer.shop_name %>
+
+    <h3>いいね件数: <%= @product.likes.count %></h3>
+
+    <% if current_customer.already_liked?(@product) %>
+      <%= button_to 'いいねを取り消す', product_like_path(@product), method: :delete %>
+    <% else %>
+      <%= button_to 'いいね', product_likes_path(@product) %>
+    <% end %>
+
+
+
   </div>
 
 

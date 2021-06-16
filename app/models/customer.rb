@@ -6,5 +6,13 @@ class Customer < ApplicationRecord
 
   has_many :products, dependent: :destroy
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :product
+
+
+  def already_liked?(product)
+    self.likes.exists?(product_id: product.id)
+  end
+
 
 end

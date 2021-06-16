@@ -26,6 +26,9 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find_by(id: current_customer.id)
   end
 
+  def likes_index
+    @customer = current_customer
+  end
 
 
 
