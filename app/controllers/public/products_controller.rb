@@ -16,7 +16,7 @@ class Public::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(id: current_customer.id)
+    @products = Product.where(customer_id: current_customer.id)
   end
 
   def show

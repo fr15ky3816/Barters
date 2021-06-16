@@ -21,6 +21,10 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find_by(id: current_customer.id)
   end
+  
+  def show_profile
+    @customer = Customer.find_by(id: current_customer.id)
+  end
 
 
 

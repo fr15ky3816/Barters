@@ -1,3 +1,20 @@
-<h1>商品詳細</h1>
-<%= @product.name %>
-<%= @product.description %>
+<div class="container">
+  <div class="product_details">
+    <div class="product_name">
+      <%= @product.name %>
+    </div>
+    <div class="product_image">
+      <%= attachment_image_tag @product, :image1_id, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded main-image" %>
+    </div>
+    <div class="product_description">
+      <%= @product.description %>
+    </div>
+    
+    <%= @product.customer.shop_name %>
+  </div>
+
+
+
+
+
+</div>

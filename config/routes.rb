@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :customers
+    get "/customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     resources :products, only: [:new, :create, :index, :show, :destroy]
     get "/product/complete" => "products#complete"
   end
@@ -27,8 +28,8 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about" => "homes#about"
 
-  
-  
+
+
 
 
 end
