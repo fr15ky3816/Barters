@@ -18,13 +18,19 @@ Rails.application.routes.draw do
     end
 
   scope module: :public do
-    resources :customers
+    resources :customers do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     get "/customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     get "/customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
-    resources :products, only: [:new, :create, :index, :show, :destroy] do
+    
+    resources :products, only: [:new, :create, :show, :destroy] do
       resources :likes, only: [:create, :destroy]
     end
     get "/product/complete" => "products#complete"
+    get "/product/:id/index" => "products#index", as: :product_index
   end
 
 
