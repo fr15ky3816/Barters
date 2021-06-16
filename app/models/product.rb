@@ -5,4 +5,7 @@ class Product < ApplicationRecord
   has_many :likes
   has_many :liked_users, through: :likes, source: :customer
 
+  has_many :post_comments, dependent: :destroy
+
+
 end

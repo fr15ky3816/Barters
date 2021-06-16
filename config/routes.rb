@@ -25,12 +25,15 @@ Rails.application.routes.draw do
     end
     get "/customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     get "/customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
-    
+
     resources :products, only: [:new, :create, :show, :destroy] do
       resources :likes, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
     end
     get "/product/complete" => "products#complete"
     get "/product/:id/index" => "products#index", as: :product_index
+
+
   end
 
 

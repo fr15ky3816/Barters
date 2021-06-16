@@ -1,4 +1,4 @@
-<h1><%= @customer.shop_name %>のマイページ</h1>
+<h1><%= @customer.shop_name %>さんのマイページ</h1>
 
 <p><%= @customer.shop_description %></p>
 
@@ -8,6 +8,9 @@
   <%= link_to "いいねした商品", customer_likes_index_path(@customer) %>
   <%= link_to "プロフィール", customer_show_profile_path(@customer) %>
   <%= link_to "本人情報", edit_customer_path(@customer) %>
+  <%= link_to "#{ @customer.followings.count }フォロー中", customer_followings_path(@customer) %>
+  <%= link_to "#{ @customer.followers.count }フォロワー", customer_followers_path(@customer) %>
+
 <% else %>
   <% if current_customer.following?(@customer) %>
       <%= link_to "-Unfollow", customer_relationships_path(@customer.id), method: :delete %>

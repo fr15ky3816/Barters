@@ -17,6 +17,9 @@ class Customer < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
 
+  has_many :post_comments, dependent: :destroy
+
+
 
   def already_liked?(product)
     self.likes.exists?(product_id: product.id)

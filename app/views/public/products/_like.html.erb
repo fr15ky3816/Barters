@@ -3,5 +3,5 @@
 <% if current_customer.already_liked?(product) %>
   <%= button_to 'いいねを取り消す', product_like_path(product), method: :delete, remote: true %>
 <% else %>
-  <%= button_to 'いいね', product_likes_path(product), remote: true %>
+  <%= button_to 'いいね', product_likes_path(product), method: :post, remote: true %>
 <% end %>

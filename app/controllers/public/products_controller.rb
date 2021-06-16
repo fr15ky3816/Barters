@@ -16,12 +16,15 @@ class Public::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(customer_id: params[:id])
+    @customer = Customer.find(params[:id])
+    @products = Product.where(customer_id: @customer.id)
   end
 
   def show
     @product = Product.find_by(id: params[:id])
     @like = Like.new
+    @post_comments = PostComment.where(product_id: @product.id)
+    @post_comment = PostComment.new
   end
 
   def destroy
