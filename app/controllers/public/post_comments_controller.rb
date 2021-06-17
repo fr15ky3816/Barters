@@ -2,11 +2,10 @@ class Public::PostCommentsController < ApplicationController
 
 
   def create
-    product = Product.find(params[:product_id])
-    post_comment = PostComment.new(post_comment_params)
-    post_comment.customer_id = current_customer.id
-    post_comment.product_id = product.id
-    post_comment.save
+    product = Product.find_by(id: params[:product_id])
+    comment = current_customer.post_comments.new(post_comment_params)
+    comment.product_id = product.id
+    comment.save
     redirect_to request.referer
   end
 
