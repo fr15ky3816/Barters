@@ -22,17 +22,20 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      get "offers" => "offers#offers_index"
+      get "offered" => "offers#offered_index"
     end
     get "/customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     get "/customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
 
     resources :products, only: [:new, :create, :show, :destroy] do
-      resources :likes, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
+      resources :offers
     end
     get "/product/complete" => "products#complete"
     get "/product/:id/index" => "products#index", as: :product_index
-
+    get "/product/offer/complete" => "offers#complete"
 
   end
 

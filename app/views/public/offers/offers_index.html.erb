@@ -1,0 +1,11 @@
+<div class="container">
+
+  <h5>オファーした商品</h5>
+  <% @offers.each do |offer| %>
+    <%= link_to product_offer_path(offer.offer_product_id, offer.id) do %>
+      <%= offer.offer_product.name %>
+    <% end %>
+
+  <% end %>
+
+</div>

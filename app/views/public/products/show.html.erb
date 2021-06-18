@@ -21,6 +21,10 @@
       <%= @product.customer.shop_name %>
     <% end %>
 
+    <% unless @product.customer_id == current_customer.id %>
+      <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-primary" %>
+    <% end %>
+
     <div id="likes_buttons" >
        <%= render partial: 'public/products/like', locals: {product: @product} %>
     </div>
