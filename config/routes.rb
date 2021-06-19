@@ -10,21 +10,38 @@ Rails.application.routes.draw do
 
   devise_for :customers, skip: :all
     devise_scope :customer do
-      get '/customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
-      post '/customers', to: 'public/registrations#create', as: :customer_registration
-      get "/customers/sign_in", to: "public/sessions#new", as: :new_customer_session
-      post "/customers/sign_in", to: "public/sessions#create",as: :customer_session
-      delete "/customers/sign_out", to: "public/sessions#destroy",as: :destroy_customer_session
+      get 'customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
+      post 'customers', to: 'public/registrations#create', as: :customer_registration
+      get "customers/sign_in", to: "public/sessions#new", as: :new_customer_session
+      post "customers/sign_in", to: "public/sessions#create",as: :customer_session
+      delete "customers/sign_out", to: "public/sessions#destroy",as: :destroy_customer_session
     end
 
   scope module: :public do
-    resources :customers
-    get "/customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
-    get "/customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
-    resources :products, only: [:new, :create, :index, :show, :destroy] do
-      resources :likes, only: [:create, :destroy]
+    resources :customers do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+      get "offers" => "offers#offers_index"
+      get "offered" => "offers#offered_index"
+      get "orders" => "orders#orders_index"
+      get "ordered" => "orders#ordered_index"
+      get "product/index" => "products#index", as: :product_index
     end
-    get "/product/complete" => "products#complete"
+    get "customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
+    get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
+
+
+    resources :products, only: [:new, :create, :show, :edit, :destroy] do
+      resource :likes, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
+      resources :offers
+      resource :orders
+    end
+    get "product/complete" => "products#complete"
+
+    get "product/offer/complete" => "offers#complete"
+
   end
 
 

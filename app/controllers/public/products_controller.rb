@@ -16,18 +16,26 @@ class Public::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(customer_id: current_customer.id)
+    @customer = Customer.find(params[:customer_id])
+    @products = Product.where(customer_id: @customer.id)
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
-    @like = Like.new
+    @product = Product.find(params[:id])
+    @post_comments = PostComment.where(product_id: @product.id)
+    @post_comment = PostComment.new
   end
 
   def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    byebug
+    redirect_to customer_product_index_path(@product.customer.id)
   end
 
-
+  def edit
+    @product = Product.find(params[:id])
+  end
 
 
 

@@ -1,0 +1,23 @@
+<div class="container">
+  <h5>以下の内容で取引を成立させます</h5>
+  <table>
+    <tr>
+      <th>オファーされた商品:</th>
+      <th>交換される商品:</th>
+    </tr>
+    <tr>
+      <th><%= @offer.offer_product.name %></th>
+      <th><%= @offer.trade_product.name %></th>
+    </tr>
+  </table>
+
+  <%= form_with model:[@product, @order], local: true do |f| %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.hidden_field :order_product_id, value: @offer.offer_product_id %>
+    <%= f.hidden_field :order_trade_product_id, value: @offer.trade_product_id %>
+    <%= f.hidden_field :order_status, value: "準備中" %>
+
+
+    <%= f.submit "オファーを承諾します", class: "btn btn-success" %>
+  <% end %>
+</div>

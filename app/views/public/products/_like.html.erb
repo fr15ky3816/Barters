@@ -1,0 +1,10 @@
+
+<% if current_customer.already_liked?(product) %>
+  <%= link_to product_likes_path(product), method: :delete, remote: true do %>
+    <i class="fas fa-heart like_button">いいね！<%= product.likes.count %></i>
+  <% end %>
+<% else %>
+  <%= link_to product_likes_path(product), method: :post, remote: true do %>
+    <i class="fas fa-heart unlike_button">いいね！<%= product.likes.count %></i>
+  <% end %>
+<% end %>
