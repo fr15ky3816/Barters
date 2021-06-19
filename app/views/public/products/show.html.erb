@@ -17,11 +17,13 @@
       <%= @product.description %>
     </div>
 
-    <%= link_to product_index_path(@product.customer.id) do %>
+    <%= link_to customer_product_index_path(@product.customer.id) do %>
       <%= @product.customer.shop_name %>
     <% end %>
 
-    <% unless @product.customer_id == current_customer.id %>
+    <% if @product.customer_id == current_customer.id %>
+      <%= link_to "編集する", edit_product_path(@product.id) %>
+    <% else %>
       <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-primary" %>
     <% end %>
 

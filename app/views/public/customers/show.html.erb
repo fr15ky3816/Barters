@@ -3,7 +3,7 @@
 <p><%= @customer.shop_description %></p>
 
 
-<%= link_to "出品した商品", product_index_path(@customer) %>
+<%= link_to "出品した商品", customer_product_index_path(@customer) %>
 <% if @customer == current_customer %>
   <%= link_to "いいねした商品", customer_likes_index_path(@customer) %>
   <%= link_to "プロフィール", customer_show_profile_path(@customer) %>
@@ -11,7 +11,9 @@
   <%= link_to "#{ @customer.followings.count }フォロー中", customer_followings_path(@customer) %>
   <%= link_to "#{ @customer.followers.count }フォロワー", customer_followers_path(@customer) %>
   <%= link_to "オファーした商品", customer_offers_path(@customer) %>
-  <%= link_to "オファーされた商品", customer_offered_path(@customer %>)
+  <%= link_to "オファーされた商品", customer_offered_path(@customer) %>
+  <%= link_to "オファー成立商品(オファーした商品)", customer_orders_path(@customer) %>
+  <%= link_to "オファー成立商品(オファーされた商品)",customer_ordered_path(@customer) %>
 
 <% else %>
   <% if current_customer.following?(@customer) %>

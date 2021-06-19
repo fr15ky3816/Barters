@@ -20,7 +20,7 @@ class Public::OffersController < ApplicationController
 
   def offered_index
     @products = Product.where(customer_id: current_customer.id)
-    @offers = Offer.where(offer_product_id: @products.id)
+    @offers = Offer.where(offer_product_id: @products.ids)
   end
 
   def show

@@ -22,6 +22,9 @@ class Customer < ApplicationRecord
 
   has_many :offers, dependent: :destroy
 
+  has_many :orders, dependent: :destroy
+
+
 
 
 

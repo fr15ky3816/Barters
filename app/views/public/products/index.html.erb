@@ -3,8 +3,10 @@
   <h4><%= @customer.shop_description %></h4>
 
   <% @products.each do |product| %>
-    <%= attachment_image_tag product, :image1_id,  format: 'jpeg', fallback: 'no_image.jpg', size: '150x150', class: "rounded" %>
-    <%= product.name %>
+    <%= link_to product_path(product) do %>
+      <%= attachment_image_tag product, :image1_id,  format: 'jpeg', fallback: 'no_image.jpg', size: '150x150', class: "rounded" %>
+      <%= product.name %>
+    <% end %>
 
   <% end %>
 

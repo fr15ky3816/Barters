@@ -1,0 +1,11 @@
+<h1>商品情報編集</h1>
+<%= form_with model: @product, local: true do |f| %>
+  <h4>画像</h4>
+  <%= f.attachment_field :image %>
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+  <h4>説明</h4>
+  <%= f.text_area :description %>
+  <%= f.submit '投稿' %>
+  <%= link_to "商品を削除する", product_path(@product), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
