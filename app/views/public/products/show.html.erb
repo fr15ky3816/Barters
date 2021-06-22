@@ -4,9 +4,9 @@
       <%= @product.name %>
     </div>
     <ul class="slides">
-      <li class="slide active"><%= attachment_image_tag @product, :image1_id, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
-      <li class="slide"><%= attachment_image_tag @product, :image2_id, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
-      <li class="slide"><%= attachment_image_tag @product, :image3_id, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+      <li class="slide active"><%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+      <li class="slide"><%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+      <li class="slide"><%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
     </ul>
     <div class="index-btn-wrapper">
       <div class="index-btn">1</div>

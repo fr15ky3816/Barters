@@ -1,0 +1,17 @@
+<div class="mypage menu-modal-wrapper bg-light">
+  <div class="profile-detail-modal">
+    <h5><%= current_customer.shop_name %></h5>
+    <h5>商品数:<%= current_customer.products.count %></h5>
+  </div>
+  <div class="menu-btn-modal">
+    <div class="modal-btn"><%= link_to "プロフィール", customer_show_profile_path(current_customer.id), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "本人情報", edit_customer_path(current_customer.id), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "#{ current_customer.followings.count }フォロー中", customer_followings_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "#{ current_customer.followers.count }フォロワー", customer_followers_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "オファーした商品", customer_offers_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "オファーされた商品", customer_offered_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "オファー成立商品(オファーした商品)", customer_orders_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "オファー成立商品(オファーされた商品)",customer_ordered_path(current_customer), class:"text-dark" %></div>
+
+  </div>
+</div>

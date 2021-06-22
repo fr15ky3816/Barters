@@ -5,22 +5,22 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :"お客様氏名（姓）" %><br />
+    <%= f.label :"お名前(姓)" %><br />
     <%= f.text_field :customer_first_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :"お客様氏名（名）" %><br />
+    <%= f.label :"お名前(姓カナ)" %><br />
     <%= f.text_field :customer_first_name_kane, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :customer_last_name %><br />
+    <%= f.label :"お名前(名)" %><br />
     <%= f.text_field :customer_last_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :customer_last_name_kane %><br />
+    <%= f.label :"お名前(名カナ)" %><br />
     <%= f.text_field :customer_last_name_kane, autofocus: true %>
   </div>
 

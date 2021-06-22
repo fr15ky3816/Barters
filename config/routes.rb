@@ -32,16 +32,15 @@ Rails.application.routes.draw do
     get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
 
 
-    resources :products, only: [:new, :create, :show, :edit, :destroy] do
+    resources :products, only: [:new, :create, :show, :edit, :update, :destroy] do
       resource :likes, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
       resources :offers
       resource :orders
     end
     get "product/complete" => "products#complete"
-
     get "product/offer/complete" => "offers#complete"
-
+    delete "product/:product_id/product_images/:product_image_id" => "product_images#destroy", as: :product_image
   end
 
 

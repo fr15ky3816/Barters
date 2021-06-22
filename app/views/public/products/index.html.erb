@@ -2,14 +2,20 @@
   <h4><%= @customer.shop_name %></h4>
   <h4><%= @customer.shop_description %></h4>
 
-  <% @products.each do |product| %>
-    <%= link_to product_path(product) do %>
-      <%= attachment_image_tag product, :image1_id,  format: 'jpeg', fallback: 'no_image.jpg', size: '150x150', class: "rounded" %>
-      <%= product.name %>
+  <div class="product_wrapper">
+    <% @products.each do |product| %>
+      <%= link_to product_path(product) do %>
+        <div class="product_block">
+          <div class="product">
+            <div class="products_image">
+              <%= attachment_image_tag product.product_images.first, :image,  format: 'jpeg', fallback: 'no_image.jpg', size: '150x150', class: "rounded" %>
+              <p class="products_name"><%= product.name %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
     <% end %>
-
-  <% end %>
-
-
+  </div>
 </div>
 

@@ -3,6 +3,7 @@ class Public::ProductsController < ApplicationController
   def new
     if customer_signed_in?
       @product = Product.new
+      @product.product_images.build
     else
       redirect_to new_customer_registration_path
     end
@@ -28,8 +29,8 @@ class Public::ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
+
     @product.destroy
-    byebug
     redirect_to customer_product_index_path(@product.customer.id)
   end
 
@@ -37,11 +38,17 @@ class Public::ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def update
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    redirect_to product_path(@product.id)
+  end
+
 
 
   private
 
   def product_params
-    params.require(:product).permit(:genre_id, :name, :description, :is_active, :image1_id, :image2_id, :image3_id, :customer_id)
+    params.require(:product).permit(:genre_id, :name, :description, :is_active, :customer_id, product_images_images: [])
   end
 end

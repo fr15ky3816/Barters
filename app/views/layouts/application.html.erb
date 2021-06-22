@@ -12,17 +12,42 @@
 
   <body>
     <header class="bg-light" >
-      <% if customer_signed_in? %>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"text-dark" %>
-        <%= link_to "マイページ", customer_path(current_customer) %>
-      <% else %>
-        <%= link_to "新規登録", new_customer_registration_path %>
-        <%= link_to "ログイン", new_customer_session_path %>
-      <% end %>
-      <%= link_to  root_path do %>
-        <%= image_tag "no_image.jpg", size: "70x70", class: "logo_image" %>
-      <% end %>
+        <div class="btn-right-wrapper">
+          <% if customer_signed_in? %>
+            <%= link_to destroy_customer_session_path, method: :delete, class:"btn-right text-dark" do %>
+              <i class="fas fa-sign-out-alt">ログアウト</i>
+            <% end %>
+            <%= link_to customer_path(current_customer), class:"text-dark btn-right mypage" do %>
+              <i class="fas fa-user-circle">マイページ</i>
+            <% end %>
+          <% else %>
+            <%= link_to new_customer_registration_path, class:"text-dark btn-right" do %>
+              <i class="fas fa-user-plus">新規登録</i>
+            <% end %>
+            <%= link_to new_customer_session_path, class:"text-dark btn-right" do %>
+              <i class="fas fa-sign-in-alt">ログイン</i>
+            <% end %>
+          <% end %>
+        </div>
+        <%= link_to  root_path do %>
+          <%= image_tag "logo_transparent.png", size: "100x100", class: "logo_image" %>
+        <% end %>
+
+
     </header>
     <%= yield %>
   </body>
 </html>
+
+<script>
+  $('.mypage').hover(function() {
+
+      $('.menu-modal-wrapper').fadeIn();
+    },
+    function(){
+      $('.menu-modal-wrapper').fadeOut();
+    }
+  );
+
+
+</script>
