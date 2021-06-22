@@ -23,13 +23,14 @@ ul {
 
 header {
   height: 100px;
-  box-shadow: 0px 3px #CCCCCC;
+  box-shadow: 0px 3px #808080;
+  background-color: #EEEEEE;
+  width: 100%;
+  position: absolute;
+  top: 0px;
 }
-.container {
- padding: 0 150px;
- width: 1170px;
- margin: 0 auto;
-
+body {
+  background-color: #EEEEEE;
 }
 
 
@@ -37,7 +38,10 @@ header {
 .logo_image {
   float: left;
   margin-left: 30px;
+  margin-top: -20px;
 }
+
+
 
 .btn-right-wrapper {
   float: right;
@@ -74,7 +78,7 @@ header {
 }
 
 .modal-btn {
-  border: 1px solid #CCCCCC;
+
   line-height: 40px;
   padding-left: 10px;
 }
@@ -88,6 +92,24 @@ header {
 
 
 /* topページ　*/
+.top-wrapper {
+  width: 100%;
+  height: 500px;
+  background-image: image-url("DSCN21682.jpg");
+  background-size: cover;
+  background-position: 20% 40%;
+  box-shadow: 0px 3px #808080;
+}
+
+.top-wrapper-logo {
+  margin-left: 350px;
+  margin-top: 130px;
+}
+
+
+
+
+
 .product_wrapper {
   text-align: center;
 }
@@ -96,9 +118,11 @@ header {
   float: left;
   width: 25%;
   padding: 10px 10px;
+
 }
 
 .product {
+  background-color: white;
   box-shadow: 3px 3px #CCCCCC;
 }
 

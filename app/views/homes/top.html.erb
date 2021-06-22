@@ -1,20 +1,21 @@
+
+
+
+
+<div class="top-wrapper">
+  <%= image_tag "logo_transparent.png", size: "350x350", class: "top-wrapper-logo" %>
+
+</div>
 <div class="container">
   <h1>top page</h1>
   <h5>トップ画面</h5>
-  <div class="product-registrate-btn">
-  <%= link_to new_product_path do %>
-    <p>出品</p>
-    <i class="fas fa-camera"></i>
-  <% end %>
-  </div>
+
   <div class="product_wrapper">
     <% @products.each do |product| %>
         <%= link_to product_path(product) do %>
           <div class="product_block">
             <div class="product">
               <div class="products_image">
-
-
                 <%= attachment_image_tag product.product_images.first, :image, size: "200x200" %>
               </div>
               <p class="products_name"><%= product.name %></p>
@@ -23,6 +24,16 @@
         <% end %>
     <% end %>
   </div>
+
+  <div class="product-registrate-btn">
+    <%= link_to new_product_path do %>
+      <p>出品</p>
+      <i class="fas fa-camera"></i>
+    <% end %>
+  </div>
+
+
 </div>
 
-<%= render "layouts/menu_modal" %>
+
+
