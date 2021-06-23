@@ -21,13 +21,27 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find_by(id: params[:id])
   end
-  
+
   def show_profile
     @customer = Customer.find_by(id: current_customer.id)
   end
 
   def likes_index
     @customer = current_customer
+  end
+
+  def profile_new
+    @customer = current_customer
+  end
+
+  def profile_create
+    @customer = Customer.find(params[:id])
+    @customer.update(customer_params)
+    redirect_to customer_complete_path
+  end
+
+  def complete
+
   end
 
 
@@ -51,6 +65,7 @@ class Public::CustomersController < ApplicationController
           :shop_name,
           :shop_description,
           :customer_attribute,
+          :customer_image_id
           )
     end
 end

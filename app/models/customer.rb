@@ -24,6 +24,10 @@ class Customer < ApplicationRecord
 
   has_many :orders, dependent: :destroy
 
+  enum customer_attribute: {"生産者": 0, "飲食店": 1, "その他ユーザー": 2}
+
+  attachment :customer_image
+
 
 
 

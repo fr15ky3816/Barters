@@ -1,59 +1,63 @@
 <div class="container">
-  <div class="product_details">
-    <div class="product_name">
-      <%= @product.name %>
-    </div>
-    <ul class="slides">
-      <li class="slide active"><%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
-      <li class="slide"><%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
-      <li class="slide"><%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
-    </ul>
-    <div class="index-btn-wrapper">
-      <div class="index-btn">1</div>
-      <div class="index-btn">2</div>
-      <div class="index-btn">3</div>
-    </div>
-    <div class="product_description">
-      <%= @product.description %>
-    </div>
+  <div class="row">
+    <div class="col-6 plate product-details">
+      <div class="product_name">
+        <%= @product.name %>
+      </div>
+      <ul class="slides">
+        <li class="slide active"><%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+        <li class="slide"><%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+        <li class="slide"><%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+      </ul>
+      <div class="index-btn-wrapper">
+        <div class="index-btn btn btn-success">1</div>
+        <div class="index-btn btn btn-success">2</div>
+        <div class="index-btn btn btn-success">3</div>
+      </div>
+      <div class="product_description">
+        <%= @product.description %>
+      </div>
 
-    <%= link_to customer_product_index_path(@product.customer.id) do %>
-      <%= @product.customer.shop_name %>
-    <% end %>
+      <div class="shop_name">
+        <p>出品者名:</p>
+        <%= link_to customer_product_index_path(@product.customer.id) do %>
+          <%= @product.customer.shop_name %>
+        <% end %>
+      </div>
 
-    <% if @product.customer_id == current_customer.id %>
-      <%= link_to "編集する", edit_product_path(@product.id) %>
-    <% else %>
-      <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-primary" %>
-    <% end %>
 
-    <div id="likes_buttons" >
-       <%= render partial: 'public/products/like', locals: {product: @product} %>
-    </div>
-
-    <div class="comments">
-    <p>コメント件数：<%= @post_comments.count %></p>
-    <% @post_comments.each do |post_comment| %>
-      <%= post_comment.customer.shop_name %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-      <%= post_comment.comment %>
-
-      <% if post_comment.customer.id == current_customer.id %>
-        <div class="comment-delete">
-          <%= link_to "削除", product_post_comment_path(@product.id, post_comment.id), method: :delete %>
-        </div>
+      <% if @product.customer_id == current_customer.id %>
+        <%= link_to "編集する", edit_product_path(@product.id), class: "btn btn-danger w-100" %>
+      <% else %>
+        <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-danger w-100" %>
       <% end %>
-    <% end %>
+
+      <div class="likes_buttons" >
+         <%= render partial: 'public/products/like', locals: {product: @product} %>
+         <p>コメント件数：<%= @post_comments.count %></p>
+      </div>
+
+      <div class="comments">
+        <% @post_comments.each do |post_comment| %>
+          <%= post_comment.customer.shop_name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <%= post_comment.comment %>
+
+          <% if post_comment.customer.id == current_customer.id %>
+            <div class="comment-delete">
+              <%= link_to "削除", product_post_comment_path(@product.id, post_comment.id), method: :delete %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="new-comment">
+        <%= form_with(model:[@product, @post_comment], local: true) do |f| %>
+          <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
     </div>
-
-    <div class="new-comment">
-    <%= form_with(model:[@product, @post_comment], local: true) do |f| %>
-      <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-    </div>
-
-
   </div>
 </div>
 

@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     end
     get "customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
+    get 'customers/:id/new_profile' => "customers#profile_new", as: :customer_new_profile
+    patch 'customers/:id/create_profile' => 'customers#profile_create', as: :customer_create_profile
+    get 'customer/complete' => 'customers#complete', as: :customer_complete
 
 
     resources :products, only: [:new, :create, :show, :edit, :update, :destroy] do

@@ -16,7 +16,7 @@
 
 @import "bootstrap";
 
-
+/* 共通　*/
 ul {
   list-style: none;
 }
@@ -24,7 +24,7 @@ ul {
 header {
   height: 100px;
   box-shadow: 0px 3px #808080;
-  background-color: #EEEEEE;
+  background-color: white;
   width: 100%;
   position: absolute;
   top: 0px;
@@ -33,12 +33,30 @@ body {
   background-color: #EEEEEE;
 }
 
+.plate {
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 130px;
+  box-shadow: 3px 3px #808080;
+
+}
+
+.complete {
+  height: 100px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.complete h5{
+  font-weight: bold;
+}
 
 /* ヘッダー */
 .logo_image {
   float: left;
   margin-left: 30px;
   margin-top: -20px;
+  height: 150%;
 }
 
 
@@ -90,6 +108,37 @@ body {
 
 
 
+/* 新規登録　*/
+
+.field {
+  display: block;
+  border-bottom: 1px solid #CCCCCC;
+  padding: 3px;
+}
+
+.form-header {
+  text-align: center;
+  border-bottom: 3px solid #CCCCCC;
+}
+
+.form-header h5 {
+  font-weight: bold;
+  line-height: 60px;
+}
+.actions {
+  text-align: center;
+  padding: 10px;
+
+}
+
+
+
+
+
+
+
+
+
 
 /* topページ　*/
 .top-wrapper {
@@ -114,30 +163,40 @@ body {
   text-align: center;
 }
 
-.product_block {
+.products_block {
   float: left;
   width: 25%;
   padding: 10px 10px;
 
+
 }
 
-.product {
+.products {
   background-color: white;
   box-shadow: 3px 3px #CCCCCC;
+
+
 }
 
-.product:hover {
+.products:hover {
   box-shadow: 1px 1px #CCCCCC;
 }
 
-.products_image {
-  position: relative;
 
+
+.products_image {
+  
+
+
+}
+.product_image {
+  width: 80%;
 }
 
 .products_name {
   display: inline-block;
   width: 80%;
+
 }
 
 .product-registrate-btn {
@@ -164,28 +223,38 @@ body {
   color: white;
 }
 
+
+
+
+
+
 /* 商品詳細ページ　*/
 
-.product_details {
-  width: 50%;
-  height: 800px;
-  margin: 30px auto;
+.product-details {
   text-align: center;
-  border: 1px solid #CCCCCC;
-
 }
 
 .product_name {
   font-size:20px;
-  line-height: 50px
+  line-height: 50px;
+  font-weight: bold;
+}
+
+.slides {
+  padding: 0 0;
 }
 
 .product_description {
   height: 200px;
   border: 1px solid #CCCCCC;
   margin: 10px 10px;
+  text-align: left;
+  font-weight: bold;
 }
-
+.shop_name p{
+  display: inline-block;
+  font-weight: bold;
+}
 .like_button {
   color: #e54747;
 }
@@ -194,8 +263,15 @@ body {
   color: #808080;
 }
 
+.likes_buttons p{
+  display: inline-block;
+  margin-left: 10px;
+}
+
+
 .slide {
   display: none;
+  margin: 0 auto;
 }
 
 .active {
@@ -209,8 +285,8 @@ body {
 
 .index-btn {
   display: inline-block;
-  color: #4e90af;
-  background-color: #e0f5ff;
+  color: white;
+
   width: 40px;
   padding: 6px 0;
   margin: 0 5px;

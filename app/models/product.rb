@@ -10,6 +10,8 @@ class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   accepts_attachments_for :product_images, attachment: :image
 
+  belongs_to :genre
+
 
 
 # offer

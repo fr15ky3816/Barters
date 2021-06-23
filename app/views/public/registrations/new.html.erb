@@ -1,51 +1,74 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-6 plate">
+
+      <div class="form-header">
+        <h5>会員登録</h5>
+      </div>
+      <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <%= f.label :"お名前" %>
+        <div class="field">
+          <%= f.text_field :customer_last_name, autofocus: true, style: "border: none", placeholder: "(姓)" %>
+        </div>
+
+        <div class="field">
+          <%= f.text_field :customer_first_name, style: "border: none", placeholder: "(名)" %>
+        </div>
+        <%= f.label :"お名前(カナ)" %>
+        <div class="field">
+          <%= f.text_field :customer_last_name_kane, style: "border: none", placeholder: "(姓カナ)" %>
+        </div>
+
+        <div class="field">
+          <%= f.text_field :customer_first_name_kane, style: "border: none", placeholder: "(名カナ)" %>
+        </div>
 
 
-<%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+        <div class="field">
+          <%= f.label :"メールアドレス"  %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "border: none", placeholder: "メールアドレス" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :"お名前(姓)" %><br />
-    <%= f.text_field :customer_first_name, autofocus: true %>
+        <div class="field">
+          <%= f.label :"パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", style: "border: none", placeholder: "パスワード" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"パスワード(確認)" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "border: none", placeholder: "パスワード(確認用)" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"電話番号" %><br />
+          <%= f.telephone_field :phone_numer, style: "border: none", placeholder: "電話番号" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"郵便番号" %><br />
+          <%= f.text_field :postcode, style: "border: none", placeholder: "郵便番号" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"ご住所" %><br />
+          <%= f.text_field :adress, style: "border: none", placeholder: "ご住所" %>
+        </div>
+
+
+
+        <div class="actions">
+          <%= f.submit "会員登録", class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
+      <%= render "public/shared/links" %>
+
+
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :"お名前(姓カナ)" %><br />
-    <%= f.text_field :customer_first_name_kane, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"お名前(名)" %><br />
-    <%= f.text_field :customer_last_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"お名前(名カナ)" %><br />
-    <%= f.text_field :customer_last_name_kane, autofocus: true %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>

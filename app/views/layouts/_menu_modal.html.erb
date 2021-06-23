@@ -1,3 +1,4 @@
+<% if customer_signed_in? %>
 <div class="mypage menu-modal-wrapper bg-light">
   <div class="profile-detail-modal">
     <h5><%= current_customer.shop_name %></h5>
@@ -15,3 +16,7 @@
 
   </div>
 </div>
+<% end %>
+
+
+
