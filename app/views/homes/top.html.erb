@@ -23,7 +23,7 @@
           </div>
         <% end %>
     <% end %>
-  <%= attachment_image_tag Customer.find(current_customer.id), :customer_image, format: "jpeg", size: "30x30" %>
+  <%= attachment_image_tag Customer.find_by(id: current_customer), :customer_image, format: "jpeg", fallback: 'no_image.jpg', size: "30x30" %>
   </div>
 
   <div class="product-registrate-btn">

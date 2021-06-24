@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-3 plate ">
       <div class="menu-list">
-        <%= link_to "出品した商品", customer_product_index_path(@customer) %>
+        <%= link_to "出品した商品 ", customer_product_index_path(@customer) %>
       </div>
       <% if @customer == current_customer %>
         <div class="menu-list">
@@ -45,11 +45,35 @@
       <% end %>
     </div>
     <div class="col-8 plate">
-      <%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' %>
-      <h5><%= @customer.shop_name %>さんのマイページ</h5>
-      <p><%= @customer.shop_description %></p>
+      <div class="mypage-profile">
+        <%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
+        <h5><%= @customer.shop_name %>さんのマイページ</h5>
+        <p><%= @customer.shop_description %></p>
+        <p>出品数:<%= @customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= @customer.orders.count %></p>
+      </div>
+      <div class="mypage-products">
+        <% @customer.products.each do |product| %>
+          <%= link_to product_path(product) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
     </div>
 
+  </div>
+  <div class="product-registrate-btn">
+    <%= link_to new_product_path do %>
+      <p>出品</p>
+      <i class="fas fa-camera"></i>
+    <% end %>
   </div>
 </div>
 

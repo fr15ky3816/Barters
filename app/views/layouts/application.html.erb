@@ -19,7 +19,7 @@
             <% end %>
             <%= link_to customer_path(current_customer), class:"text-success btn-right mypage" do %>
 
-              <i class="fas fa-user-circle">マイページ</i>
+              <i><%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>マイページ</i>
             <% end %>
           <% else %>
             <%= link_to new_customer_registration_path, class:"text-success btn-right" do %>
