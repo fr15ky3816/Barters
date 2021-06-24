@@ -4,12 +4,18 @@
       <h1>商品登録</h1>
       <%= form_with model: @product, local: true do |f| %>
         <h4>画像</h4>
-        <%= f.attachment_field :product_images_images, multiple: true %>
+        <%= f.attachment_field :product_images_images, multiple: true, placeholder: "" %>
         <h4>商品名</h4>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, placeholder: "40文字まで" ,class: "w-100"%>
         <h4>説明</h4>
-        <%= f.text_area :description %>
-        <%= f.submit '投稿' %>
+        <%= f.text_area :description, placeholder: "商品の説明（必須　1,000文字以内）
+        (品種、量など)
+        例）ほうれん草　１０kg
+        ", rows: "5" ,class: "w-100" %>
+        <div class="actions">
+          <%= f.submit '投稿' ,class: "w-100 btn btn-danger" %>
+        </div>
+
       <% end %>
     </div>
   </div>

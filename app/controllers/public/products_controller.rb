@@ -12,8 +12,11 @@ class Public::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.customer_id = current_customer.id
-    @product.save
-    redirect_to product_complete_path
+    if @product.save
+      redirect_to product_complete_path
+    else
+      render "public/products/new"
+    end
   end
 
   def index
