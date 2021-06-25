@@ -1,30 +1,50 @@
 <div class="container">
+  <div class="row">
+    <div class="col-8 plate">
+
+      <table>
+        <% if @offer.customer_id == current_customer.id %>
+          <tr>
+            <th>オファーした商品:</th>
+            <th>交換する商品:</th>
+          </tr>
+        <% else %>
+          <tr>
+            <th>オファーされた商品:</th>
+            <th>交換される商品:</th>
+          </tr>
+        <% end %>
+        <tr>
+          <th><%= @offer.offer_product.name %></th>
+          <th><%= @offer.trade_product.name %></th>
+        </tr>
+      </table>
 
 
-  <table>
-    <% if @offer.customer_id == current_customer.id %>
-      <tr>
-        <th>オファーした商品:</th>
-        <th>交換する商品:</th>
-      </tr>
-    <% else %>
-      <tr>
-        <th>オファーされた商品:</th>
-        <th>交換される商品:</th>
-      </tr>
-    <% end %>
-    <tr>
-      <th><%= @offer.offer_product.name %></th>
-      <th><%= @offer.trade_product.name %></th>
-    </tr>
-  </table>
+      <% if @offer.customer_id == current_customer.id %>
+        <%= link_to "オファーの取り下げ", product_offer_path(@offer.offer_product.id, @offer.id), method: :delete %>
+      <% else %>
+        <%= link_to "オファーの承諾", new_product_orders_path(@offer.offer_product.id) %>
+      <% end %>
 
 
-  <% if @offer.customer_id == current_customer.id %>
-    <%= link_to "オファーの取り下げ", product_offer_path(@offer.offer_product.id, @offer.id), method: :delete %>
-  <% else %>
-    <%= link_to "オファーの承諾", new_product_orders_path(@offer.offer_product.id) %>
-  <% end %>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
 </div>
 
 

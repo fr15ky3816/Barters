@@ -12,7 +12,7 @@
           <h5>商品はありません</h5>
         <% else %>
           <% @offers.each do |offer| %>
-            <%= link_to product_offers_path(offer.offer_product.id) do %>
+            <%= link_to product_offer_path(offer.offer_product.id, offer.id) do %>
               <div class="products_block">
                 <div class="products">
                   <div class="products_image">
