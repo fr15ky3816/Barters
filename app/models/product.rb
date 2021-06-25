@@ -30,9 +30,9 @@ class Product < ApplicationRecord
   has_many :order_trade_products, through: :ordereds, source: :order_trade_product
 
 
-  validates :name, length: {maximum: 50 }
-  validates :name, { presence: true}
-  validates :description, length: {maximum: 1000 }
-  validates :description, { presence: true }
+  validates :name, length: {maximum: 40}
+  validates :name, presence: true
+  validates :description, length: {maximum: 1000}
+  validates :description, presence: true
 
 end

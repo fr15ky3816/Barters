@@ -36,13 +36,17 @@
          <%= render partial: 'public/products/like', locals: {product: @product} %>
          <p>コメント件数：<%= @post_comments.count %></p>
       </div>
-
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 plate comment-wrapper">
       <div class="comments">
         <% @post_comments.each do |post_comment| %>
-          <%= post_comment.customer.shop_name %>
-          <%= attachment_image_tag post_comment.customer, :customer_image, size: "50x50" %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-          <%= post_comment.comment %>
+          <h9><%= post_comment.customer.shop_name %></h9><br>
+          <%= attachment_image_tag post_comment.customer, :customer_image, size: "30x30", fallback: 'no_image.jpg',class: "customer-image" %>
+
+          <h8><%= post_comment.comment %></h8><br>
+          <h7><%= post_comment.created_at.strftime('%Y/%m/%d') %></h7>
 
           <% if post_comment.customer.id == current_customer.id %>
             <div class="comment-delete">
@@ -53,17 +57,55 @@
       </div>
 
       <div class="new-comment">
+        <p>相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。</p>
         <%= form_with(model:[@product, @post_comment], local: true) do |f| %>
           <%= f.text_area :comment, rows:'3', placeholder: "コメントをここに", class:"w-100" %>
           <div class="actions">
             <%= f.submit "コメントする", class:"btn btn-secondary w-100" %>
           </div>
-
         <% end %>
       </div>
+
+
+
     </div>
   </div>
+
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
   $('.index-btn').click(function() {

@@ -16,14 +16,14 @@
           <div class="products_block">
             <div class="products">
               <div class="products_image">
-                <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+                <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
               </div>
               <p class="products_name"><%= product.name %></p>
             </div>
           </div>
         <% end %>
     <% end %>
-  <%= attachment_image_tag Customer.find_by(id: current_customer), :customer_image, format: "jpeg", fallback: 'no_image.jpg', size: "30x30" %>
+
   </div>
 
   <div class="product-registrate-btn">

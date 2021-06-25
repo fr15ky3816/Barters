@@ -4,6 +4,7 @@ class Public::ProductsController < ApplicationController
     if customer_signed_in?
       @product = Product.new
       @product.product_images.build
+      @genres = Genre.all
     else
       redirect_to new_customer_registration_path
     end
@@ -13,8 +14,10 @@ class Public::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.customer_id = current_customer.id
     if @product.save
+
       redirect_to product_complete_path
     else
+      @genres =Genre.all
       render "public/products/new"
     end
   end
