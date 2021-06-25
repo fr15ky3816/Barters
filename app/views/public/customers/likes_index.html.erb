@@ -1,8 +1,35 @@
-<h1>いいねした商品</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-8 plate">
+      <div class="like-index-header">
+        <p>いいねした商品</p>
+      </div>
 
-<% @customer.likes.each do |like| %>
-  <%= link_to product_path(like.product.id) do %>
-    <%= like.product.name %>
-    <%= attachment_image_tag like.product, :image1_id, format: 'jpeg', fallback: 'no_image.jpg', size: "150x150", class: "rounded" %>
-  <% end %>
-<% end %>
+      <div class="like-indexes">
+        <div class="mypage-products">
+
+          <% @customer.likes.each do |like| %>
+            <%= link_to product_path(like.product.id) do %>
+              <div class="products_block">
+                <div class="products">
+                  <div class="products_image">
+                    <%= attachment_image_tag like.product.product_images.first, :image, format: 'jpeg', fallback: 'no_image.jpg', size: "150x150", class: "rounded" %>
+                  </div>
+                  <p class="products_name"><%= like.product.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+

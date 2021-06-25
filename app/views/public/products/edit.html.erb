@@ -1,28 +1,73 @@
-<h1>商品情報編集</h1>
-<%= form_with model: @product, local: true do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-8 plate">
 
-  <%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %>
-  <% unless @product.product_images[0].nil? %>
-    <%= link_to "削除", product_image_path(@product.id, @product.product_images[0].id), method: :delete %>
-  <% end %>
-  <%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %>
-  <% unless @product.product_images[1].nil? %>
-    <%= link_to "削除", product_image_path(@product.id, @product.product_images[1].id), method: :delete %>
-  <% end %>
-  <%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %>
-  <% unless @product.product_images[2].nil? %>
-    <%= link_to "削除", product_image_path(@product.id, @product.product_images[2].id), method: :delete %>
-  <% end %>
+    <div class="edit-header">
+      <p>商品の情報を入力</p>
+    </div>
 
-  <h4>画像</h4>
-  <%= f.attachment_field :product_images_images, multiple: true %>
-  <p>アップしたい画像を全て添付してください。前に保存されていた画像は破棄されます。<br>
-  Ctrlを押しながらクリックで複数追加できます。</p>
-  <h4>商品名</h4>
-  <%= f.text_field :name %>
-  <h4>説明</h4>
-  <%= f.text_area :description %>
-  <%= f.submit '投稿' %>
+    <div class="edit-image-wrapper">
+      <div class="edit-image-title">
+        <h5>出品画像</h5>
+        <p>最大3枚までアップロードできます</p>
+      </div>
 
-<% end %>
-<%= link_to "商品を削除する", product_path(@product), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+      <div class="edit-image-image-block">
+        <div class="edit-image-image">
+          <%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "edit-product_image rounded" %>
+        </div>
+        <% unless @product.product_images[0].nil? %>
+          <%= link_to "削除", product_image_path(@product.id, @product.product_images[0].id), method: :delete %>
+        <% end %>
+      </div>
+
+      <div class="edit-image-image-block">
+        <div class="edit-image-image">
+          <%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "edit-product_image rounded" %>
+        </div>
+        <% unless @product.product_images[1].nil? %>
+          <%= link_to "削除", product_image_path(@product.id, @product.product_images[1].id), method: :delete %>
+        <% end %>
+      </div>
+
+      <div class="edit-image-image-block">
+        <div class="edit-image-image">
+          <%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "edit-product_image rounded" %>
+        </div>
+        <% unless @product.product_images[2].nil? %>
+          <%= link_to "削除", product_image_path(@product.id, @product.product_images[2].id), method: :delete %>
+        <% end %>
+      </div>
+
+
+    </div>
+
+    <%= form_with model: @product, local: true do |f| %>
+      <%= f.attachment_field :product_images_images, multiple: true %>
+      <p>アップしたい画像を全て添付してください。前に保存されていた画像は破棄されます。<br>
+      Ctrlを押しながらクリックで複数追加できます。</p>
+      <h4>商品名</h4>
+      <%= f.text_field :name, class: "w-100" %>
+      <h4>説明</h4>
+      <%= f.text_area :description, rows: "5", class:"w-100" %>
+      <div class="actions">
+        <%= f.submit '商品の編集', class:"btn btn-danger w-100" %>
+      </div>
+    <% end %>
+    <div class="actions">
+      <p>or</p>
+    </div>
+    <div class="actions">
+      <%= link_to "商品を削除する", product_path(@product), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-secondary w-100" %>
+    </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+

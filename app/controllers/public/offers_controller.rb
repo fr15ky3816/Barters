@@ -9,9 +9,16 @@ class Public::OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
-    @offer.save
-
-    redirect_to product_offer_complete_path
+    if @offer.save
+      redirect_to product_offer_complete_path
+    else
+      @product = Product.find(params[:product_id])
+      @current_customer_product = Product.where(customer_id: current_customer.id)
+      render "public/offers/new"
+    end
+  end
+  
+  def complete 
   end
 
   def offers_index

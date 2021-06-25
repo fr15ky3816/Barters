@@ -1,11 +1,35 @@
 <div class="container">
+  <div class="row">
+    <div class="col-8 plate">
 
-  <h5>オファーされた商品</h5>
-  <% @offers.each do |offer| %>
-    <%= link_to product_offer_path(offer.offer_product_id, offer.id) do %>
-      <%= offer.offer_product.name %>
-    <% end %>
+      <div class="offer-header">
+        <p>オファーされた商品</p>
+      </div>
 
-  <% end %>
 
+      <div class="product_wrapper">
+        <% if @offers.empty? %>
+          <h5>商品はありません</h5>
+        <% else %>
+
+          <% @offers.each do |offer| %>
+            <%= link_to product_offers_path(offer.offer_product.id) do %>
+              <div class="products_block">
+                <div class="products">
+                  <div class="products_image">
+                    <%= attachment_image_tag offer.offer_product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                  </div>
+                  <p class="products_name"><%= offer.offer_product.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+
+        <% end %>
+      </div>
+
+
+
+    </div>
+  </div>
 </div>

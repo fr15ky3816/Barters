@@ -7,7 +7,17 @@
         <h5><%= @customer.shop_name %>さんのマイページ</h5>
 
         <p>出品数:<%= @customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= @customer.orders.count %></p>
+        <% if current_customer.following?(@customer) %>
+          <%= link_to customer_relationships_path(@customer.id), method: :delete, class:"btn btn-outline-secondary" do %>
+            <i class="fas fa-check">フォロー中</i>
+          <% end %>
+        <% else %>
+          <%= link_to customer_relationships_path(@customer.id), method: :post, class:"btn btn-outline-danger" do %>
+            <i class="fas fa-plus">フォロー</i>
+          <% end %>
+        <% end %>
       </div>
+
       <div class="mypage-products">
         <p><%= @customer.shop_description %></p>
         <% @customer.products.each do |product| %>
@@ -34,10 +44,6 @@
 </div>
 
 
-
-<div class="container">
-
-</div>
 
 
 

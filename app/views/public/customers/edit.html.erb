@@ -1,71 +1,66 @@
-<% if flash[:failed] %>
-  <p class="alert alert-danger">
-    <%= flash[:failed] %>
-  </p>
-<% end %>
-
 <div class="container">
-  <div class="badge badge-light my-4">
-    <h3>本人情報登録</h3>
+  <div class="row">
+    <div class="col-8 plate">
+
+
+
+      <% if flash[:failed] %>
+        <p class="alert alert-danger">
+          <%= flash[:failed] %>
+        </p>
+      <% end %>
+
+
+      <div class="customer-edit-header">
+        <p>本人情報の登録</p>
+      </div>
+
+      <%= form_with model: @customer, local:true do |f| %>
+        <div class="field profile-field">
+          <h7>お名前</h7>
+          <p><%= @customer.customer_last_name %><%= @customer.customer_first_name %></p>
+          <h7>お名前カナ</h7>
+          <p><%= @customer.customer_last_name_kane %><%= @customer.customer_first_name_kane %></p>
+        </div>
+
+        <div class="field">
+          <%= f.label :"郵便番号"%><br>
+          <%= f.text_field :postcode, placeholder: "例）1234567" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"住所"%><br>
+          <%= f.text_field :address, placeholder: "例）東京都〇〇区〇〇町〇〇-〇〇-〇", class:" w-50" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"電話番号" %><br>
+          <%= f.text_field :phone_number, placeholder: "例）〇〇〇-〇〇〇-〇〇〇〇", class:" w-50" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"メールアドレス"%><br>
+          <%= f.email_field :email, placeholder: "例）〇〇〇〇@gmail.com", class:" w-50" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "編集内容を保存する", class:"btn btn-success w-100" %>
+        </div>
+      <%end%>
+
+
+
+
+
+
+
+
+
+
+    </div>
   </div>
-
-    <%= form_with model: @customer, local:true do |f| %>
-    <div class="field row mb-1">
-      <div class="col-2">
-        <%= f.label :"氏名"%>
-      </div>
-      <div class="col-8">
-        <%= f.text_field :customer_last_name %><%= f.text_field :customer_first_name, class:"ml-2" %>
-      </div>
-    </div>
-
-    <div class="field row mb-1">
-      <div class="col-2">
-        <%= f.label :"フリガナ"%>
-      </div>
-      <div class="col-8">
-         <%= f.text_field :customer_first_name_kane %><%= f.text_field :customer_last_name_kane, class:"ml-2"%>
-      </div>
-    </div>
-
-    <div class="field row mb-1">
-      <div class="col-2">
-        <%= f.label :"郵便番号"%>
-      </div>
-      <div class="col-8">
-         <%= f.text_field :postcode%>
-      </div>
-    </div>
-
-    <div class="field row mb-1">
-      <div class="col-2">
-        <%= f.label :"住所"%>
-      </div>
-      <div class="col-8">
-         <%= f.text_field :address,size:60%>
-      </div>
-    </div>
-
-    <div class="field row mb-1">
-      <div class="col-2">
-        <%= f.label :"電話番号"%>
-      </div>
-      <div class="col-8">
-         <%= f.text_field :phone_number%>
-      </div>
-    </div>
-
-    <div class="field row mb-1">
-      <div class="col-2">
-        <%= f.label :"メールアドレス"%>
-      </div>
-      <div class="col-8">
-        <%= f.email_field :email,class:"mb-4"%><br>
-        <!--customers_retire_pathについては要相談？-->
-        <%= f.submit "編集内容を保存する",class:"btn btn-success"%>
-       
-      </div>
-    </div>
-    <%end%>
-
 </div>
+
+
+
+

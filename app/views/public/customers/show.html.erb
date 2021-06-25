@@ -57,7 +57,7 @@
             <div class="products_block">
               <div class="products">
                 <div class="products_image">
-                  <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+                  <%= attachment_image_tag product.product_images.first, :image, format: 'jpeg', fallback: 'no_image.jpg', class: "product_image" %>
                 </div>
                 <p class="products_name"><%= product.name %></p>
               </div>

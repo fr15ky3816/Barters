@@ -1,10 +1,45 @@
-<h5>オファー画面</h5>
-<h7></h7>
-<%= form_with(model:[@product, @offer], local: true) do |f| %>
-  <h5><%= @product.name %>へオファー</h5>
-  <%= f.label :trade_product_id, "交換する商品" %>
-  <%= f.collection_select :trade_product_id, @current_customer_product, :id, :name, prompt: "--選択してください--" %>
-  <%= f.hidden_field :offer_product_id, value: @product.id %>
-  <%= f.hidden_field :customer_id, value: current_customer.id %>
-  <%= f.submit "オファーする" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-8 plate">
+
+      <div class="offer-header">
+        <p>オファーの確認</p>
+      </div>
+
+      <div class="offer-details">
+        <div class="offer-product-image">
+          <%= attachment_image_tag @product.product_images.first, :image, format: "jpeg", class: "rounded" %>
+        </div>
+        <div class="offer-product-detail">
+          <p><%= @product.name %></p>
+          <p>出品者:<%= @product.customer.shop_name %></p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-8 offer-form-plate plate">
+      <div class="offer-form">
+
+        <%= form_with(model:[@product, @offer], local: true) do |f| %>
+          <%= f.label :trade_product_id, "交換する商品" %><br>
+          <%= f.collection_select :trade_product_id, @current_customer_product, :id, :name, prompt: "--選択してください--", class:"offer-form-select" %>
+
+          <%= f.hidden_field :offer_product_id, value: @product.id %>
+          <%= f.hidden_field :customer_id, value: current_customer.id %>
+
+          <div class="actions">
+            <%= f.submit "オファーする", class: "btn btn-danger w-100" %>
+          </div>
+        <% end %>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+

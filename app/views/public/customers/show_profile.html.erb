@@ -1,13 +1,44 @@
-<h4>プロフィール</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-8 plate">
+
+      <div class="profile-header">
+        <p>プロフィール</p>
+      </div>
+
+      <%= form_with model: @customer, local: true do |f| %>
+        <div class="mypage-profile">
+          <%= attachment_image_tag @customer, :customer_image, size: "100x100", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
+          <h5><%= f.text_field :shop_name, autofocus: true, style: "border: none", placeholder: "ショップ名", value: "#{@customer.customer_last_name}さんのショップ" %></h5>
+        </div>
+
+        <div class="profile-form">
+          <div class="field">
+            <%= f.label :"ショップ画像" %><br />
+            <%= f.attachment_field :customer_image %>
+          </div>
+          <div class="field">
+            <%= f.label :"ショップ説明" %><br />
+            <%= f.text_area :shop_description, rows: "5", placeholder: "ショップの説明文を入力してください", class:"w-100" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "変更をする", class: "btn btn-danger w-100" %>
+          </div>
+        </div>
+      <% end %>
 
 
-<%= form_with model: @customer, local: true do |f| %>
-  <h5>ショップ名</h5>
-  <%= f.text_field :shop_name %>
-  <h5>ショップ説明</h5>
-  <%= f.text_area :shop_description %>
-  <%= f.submit "変更をする", class: "btn btn-success my-2" %>
-<% end %>
+
+    </div>
+  </div>
+</div>
 
 
-<%= link_to "編集ページ", edit_customer_path(current_customer) %>
+
+
+
+
+
+
+
+
