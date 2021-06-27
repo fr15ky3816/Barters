@@ -1,9 +1,12 @@
 <% if customer_signed_in? %>
 <div class="bar-menu bar-menu-modal-wrapper">
   <div class="profile-detail-modal">
-    <h5><%= current_customer.shop_name %></h5>
-    <h5>商品数:<%= current_customer.products.count %></h5>
+    <%= attachment_image_tag current_customer, :customer_image, format: 'jpeg', fallback: 'no_image.jpg' ,class: "menu-modal-customer-image" %>
+    <p><%= current_customer.shop_name %></p>
+    <p>出品数:<%= current_customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= current_customer.orders.count %></p>
   </div>
+
+
   <div class="menu-btn-modal">
     <div class="modal-btn"><%= link_to "マイページ", customer_path(current_customer), class:"text-dark" %></div>
     <div class="modal-btn"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"text-dark" %></div>
