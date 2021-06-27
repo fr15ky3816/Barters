@@ -3,41 +3,61 @@
 
 
 <div class="top-wrapper">
-  <%= image_tag "logo_transparent.png", size: "350x350", class: "top-wrapper-logo" %>
-
+  <%= link_to about_path do %>
+    <%= image_tag "logo_transparent.png", size: "350x350", class: "top-wrapper-logo" %>
+  <% end %>
 </div>
 <div class="container">
-  <h1>top page</h1>
-  <h5>トップ画面</h5>
-
-  <div class="product_wrapper">
-    <% @products.each do |product| %>
-        <%= link_to product_path(product) do %>
-          <div class="products_block">
-            <div class="products">
-              <div class="products_image">
-                <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
-              </div>
-              <p class="products_name"><%= product.name %></p>
-            </div>
+  <% if customer_signed_in? %>
+    <div class="row">
+      <div class="col-10 top-like-wrapper">
+        <div class="top-like-header">
+          <div class="top-like-left">
+            <p>いいね!した商品</p>
           </div>
-        <% end %>
-    <% end %>
+          <div class="top-like-right">
+            <%= link_to "すべての商品を見る", customer_likes_index_path(current_customer.id) %>
+          </div>
+        </div>
 
-  </div>
+        <div class="product_wrapper">
+          <% @likes.each do |like| %>
+            <!-- このif文は商品が購入可能かを分岐　-->
+            <% if like.product.is_sold == false && like.product.is_active == true %>
+              <%= link_to product_path(like.product.id) do %>
+                <div class="products_block">
+                  <div class="products">
+                    <div class="products_image">
+                      <%= attachment_image_tag like.product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                    </div>
+                    <p class="products_name"><%= like.product.name %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <p>現在購入できるいいね!した商品はありません。</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="top-menu-wrapper">
 
-  <div class="product-registrate-btn">
-    <%= link_to new_product_path do %>
-      <p>出品</p>
-      <i class="fas fa-camera"></i>
-    <% end %>
-  </div>
-
-
-
-
-
+  <h6>人気のカテゴリー</h6>
+  <button class="btn btn-secondary">野菜</button>
+  <button class="btn btn-secondary">果物</button>
+  <button class="btn btn-secondary">米・雑穀</button>
+  <button class="btn btn-secondary">加工食品</button>
+  <button class="btn btn-secondary">飲料</button>
+  <button class="btn btn-secondary">その他</button>
 </div>
 
 
-
+<div class="product-registrate-btn">
+  <%= link_to new_product_path do %>
+    <p>出品</p>
+    <i class="fas fa-camera"></i>
+  <% end %>
+</div>

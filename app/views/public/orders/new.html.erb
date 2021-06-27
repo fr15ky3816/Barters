@@ -79,6 +79,7 @@
         <%= f.hidden_field :order_product_id, value: @offer.offer_product_id %>
         <%= f.hidden_field :order_trade_product_id, value: @offer.trade_product_id %>
         <%= f.hidden_field :order_status, value: "準備中" %>
+        
 
         <div class="offer-accept-btn">
           <%= f.submit "オファーを承諾します", class: "btn btn-success", "data-confirm" => "オファーを承諾しますか？" %>

@@ -18,6 +18,9 @@
                   <div class="products_image">
                     <%= attachment_image_tag order.order_product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
                   </div>
+                  <div class="mypage-sold-wrap">
+                    <p>sold out</p>
+                  </div>
                   <p class="products_name"><%= order.order_product.name %></p>
                 </div>
               </div>

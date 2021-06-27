@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 plate ">
+    <div class="col-sm-3 plate menu-lists">
+
       <div class="menu-list">
         <%= link_to "出品した商品 ", customer_product_index_path(@customer) %>
       </div>
@@ -47,7 +48,8 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-8 plate">
+
+    <div class="col-sm-8 plate">
       <div class="mypage-profile">
         <%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
         <h5><%= @customer.shop_name %>さんのマイページ</h5>
@@ -62,6 +64,11 @@
                 <div class="products_image">
                   <%= attachment_image_tag product.product_images.first, :image, format: 'jpeg', fallback: 'no_image.jpg', class: "product_image" %>
                 </div>
+                <% if product.is_sold == true %>
+                  <div class="mypage-sold-wrap">
+                    <p>sold out</p>
+                  </div>
+                <% end %>
                 <p class="products_name"><%= product.name %></p>
               </div>
             </div>

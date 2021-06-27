@@ -84,7 +84,7 @@
               <p>取引が完了しましたらステータスを変更して取引を完了してください！</p>
 
               <%= form_with model:[@product, @order], url: product_orders_path(@order.order_product.id), local: true , method: :patch do |f| %>
-                <%= f.radio_button :order_status, :"取引完了" %>
+                <%= f.radio_button :order_status, :"取引完了", checked: true %>
                 <%= f.submit "ステータス変更", "data-confirm" => "取引完了しましたか？", class: "btn btn-danger" %>
               <% end %>
 

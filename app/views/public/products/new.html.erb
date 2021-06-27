@@ -2,15 +2,16 @@
   <div class="row">
     <div class="col-6 plate">
       <% if @product.errors.any? %>
-        <%= @product.errors.count %>件のエラーが発生しました
+        <h5><%= @product.errors.count %>件のエラーが発生しました</h5>
         <% @product.errors.full_messages.each do |message| %>
-          <%= message %>
+          <p><%= message %></p>
         <% end %>
       <% end %>
       <h1>商品登録</h1>
       <%= form_with model: @product, local: true do |f| %>
         <h4>画像</h4>
         <%= f.attachment_field :product_images_images, multiple: true %>
+        <p>画像は3枚まで添付できます。<br>Ctrlキーを押しながら画像を選択すると複数選択できます。</p>
         <h4>商品名</h4>
         <%= f.text_field :name, placeholder: "40文字まで" ,class: "w-100"%>
         <h4>説明</h4>
@@ -22,7 +23,6 @@
 
         <h4>ジャンル</h4>
         <%= f.collection_select :genre_id, @genres, :id, :genre_name, prompt: "選択してください", class: "w-100" %>
-        <%= f.hidden_field :is_active, value: true %>
         <div class="actions">
           <%= f.submit '投稿' ,class: "w-100 btn btn-danger" %>
         </div>

@@ -2,7 +2,7 @@ class Public::OffersController < ApplicationController
 
   def new
     @product = Product.find(params[:product_id])
-    @current_customer_product = Product.where(customer_id: current_customer.id)
+    @current_customer_product = Product.where(customer_id: current_customer.id, is_active: true, is_sold: false)
     @offer = Offer.new
 
   end
@@ -17,8 +17,8 @@ class Public::OffersController < ApplicationController
       render "public/offers/new"
     end
   end
-  
-  def complete 
+
+  def complete
   end
 
   def offers_index

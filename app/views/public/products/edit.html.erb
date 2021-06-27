@@ -55,6 +55,24 @@
         <%= f.submit '商品の編集', class:"btn btn-danger w-100" %>
       </div>
     <% end %>
+
+    <% if @product.is_active == true %>
+      <%= form_with model: @product, local: true do |f| %>
+        <div class="actions">
+          <%= f.hidden_field :is_active, value: false %>
+          <%= f.submit '出品を停止する', class:"btn btn-secondary w-100" %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= form_with model: @product, local: true do |f| %>
+        <div class="actions">
+          <%= f.hidden_field :is_active, value: true %>
+          <%= f.submit '出品を再開する', class:"btn btn-success w-100" %>
+        </div>
+      <% end %>
+    <% end %>
+
+
     <div class="actions">
       <p>or</p>
     </div>

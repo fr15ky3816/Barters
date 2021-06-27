@@ -4,7 +4,8 @@
       <% if @offer.customer_id == current_customer.id %>
         <div class="offer-detail-wrapper row">
 
-          <div class="offer-detail-product col-sm-4">
+          <div class="offer-detail-product col-sm-5">
+            <%= link_to product_path(@offer.offer_product) do %>
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
                 <%= attachment_image_tag @offer.offer_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
@@ -14,13 +15,15 @@
                 <p><%= @offer.offer_product.name %></p>
               </div>
             </div>
+            <% end %>
           </div>
 
-          <div class="offer-detail-product-i col-sm-4">
+          <div class="offer-detail-product-i col-sm-2">
             <i class="fas fa-exchange-alt"></i>
           </div>
 
-          <div class="offer-detail-product col-sm-4">
+          <div class="offer-detail-product col-sm-5">
+            <%= link_to product_path(@offer.trade_product) do %>
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
                 <%= attachment_image_tag @offer.trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
@@ -30,12 +33,14 @@
                 <p><%= @offer.trade_product.name %></p>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       <% else %>
         <div class="offer-detail-wrapper row">
 
-          <div class="offer-detail-product col-sm-4">
+          <div class="offer-detail-product col-sm-5">
+            <%= link_to product_path(@offer.offer_product) do %>
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
                 <%= attachment_image_tag @offer.offer_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
@@ -45,13 +50,15 @@
                 <p><%= @offer.offer_product.name %></p>
               </div>
             </div>
+            <% end %>
           </div>
 
-          <div class="offer-detail-product-i col-sm-4">
+          <div class="offer-detail-product-i col-sm-2">
             <i class="fas fa-exchange-alt"></i>
           </div>
 
-          <div class="offer-detail-product col-sm-4">
+          <div class="offer-detail-product col-sm-5">
+            <%= link_to product_path(@offer.trade_product) do %>
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
                 <%= attachment_image_tag @offer.trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
@@ -61,6 +68,7 @@
                 <p><%= @offer.trade_product.name %></p>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       <% end %>

@@ -1,42 +1,97 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 plate">
+    <div class="col-10 plate">
 
-      <div class="mypage-profile">
-        <%= attachment_image_tag @customer, :customer_image, size: "100x100", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
-        <h5><%= @customer.shop_name %>さんのマイページ</h5>
+      <div class="row">
+        <div class="col-12">
+          <div class="mypage-profile">
+            <%= attachment_image_tag @customer, :customer_image, size: "100x100", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
+            <h5><%= @customer.shop_name %>さんのマイページ</h5>
 
-        <p>出品数:<%= @customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= @customer.orders.count %></p>
-        <% if current_customer.following?(@customer) %>
-          <%= link_to customer_relationships_path(@customer.id), method: :delete, class:"btn btn-outline-secondary" do %>
-            <i class="fas fa-check">フォロー中</i>
-          <% end %>
-        <% else %>
-          <%= link_to customer_relationships_path(@customer.id), method: :post, class:"btn btn-outline-danger" do %>
-            <i class="fas fa-plus">フォロー</i>
-          <% end %>
-        <% end %>
+            <p>出品数:<%= @customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= @customer.orders.count %></p>
+            <% if customer_signed_in? %>
+              <% if current_customer.following?(@customer) %>
+                <%= link_to customer_relationships_path(@customer.id), method: :delete, class:"btn btn-outline-secondary" do %>
+                  <i class="fas fa-check">フォロー中</i>
+                <% end %>
+              <% else %>
+                <%= link_to customer_relationships_path(@customer.id), method: :post, class:"btn btn-outline-danger" do %>
+                  <i class="fas fa-plus">フォロー</i>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
 
-      <div class="mypage-products">
-        <p><%= @customer.shop_description %></p>
-        <% @customer.products.each do |product| %>
-          <%= link_to product_path(product) do %>
-            <div class="products_block">
-              <div class="products">
-                <div class="products_image">
-                  <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+      <div class="row">
+        <div class="col-12">
+          <div class="mypage-products">
+            <p><%= @customer.shop_description %></p>
+            <P>出品中</P>
+            <% @customer.products.where(is_sold: false, is_active: true).each do |product| %>
+              <%= link_to product_path(product) do %>
+                <div class="products_block">
+                  <div class="products">
+                    <div class="products_image">
+                      <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+                    </div>
+                    <p class="products_name"><%= product.name %></p>
+                  </div>
                 </div>
-                <p class="products_name"><%= product.name %></p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
 
+      <div class="row">
+        <div class="col-12">
+          <div class="mypage-products">
+            <p>取引済み</p>
+            <% @customer.products.where(is_sold: true).each do |product| %>
+              <%= link_to product_path(product) do %>
+                <div class="products_block">
+                  <div class="products">
+                    <div class="products_image">
+                      <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+                    </div>
+                    <div class="mypage-sold-wrap">
+                      <p>sold out</p>
+                    </div>
+                    <p class="products_name"><%= product.name %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-  </div>
-
+      <% if @customer == current_customer %>
+      <div class="row">
+        <div class="col-12">
+          <div class="mypage-products">
+            <p>出品停止中</p>
+            <% @customer.products.where(is_active: false).each do |product| %>
+              <%= link_to product_path(product) do %>
+                <div class="products_block">
+                  <div class="products">
+                    <div class="products_image">
+                      <%= attachment_image_tag product.product_images.first, :image, class: "product_image" %>
+                    </div>
+                    <div class="mypage-is-active-wrap">
+                      <p>出品停止中</p>
+                    </div>
+                    <p class="products_name"><%= product.name %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
 
 
     </div>

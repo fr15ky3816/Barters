@@ -1,19 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 plate product-details">
+    <div class="col-8 plate product-details">
       <div class="product_name">
         <%= @product.name %>
       </div>
       <ul class="slides">
         <li class="slide active"><%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', class: "rounded slide-image" %></li>
-        <li class="slide"><%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
-        <li class="slide"><%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded" %></li>
+        <li class="slide"><%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded slide-image" %></li>
+        <li class="slide"><%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "rounded slide-image" %></li>
       </ul>
       <div class="index-btn-wrapper">
         <div class="index-btn btn btn-success">1</div>
         <div class="index-btn btn btn-success">2</div>
         <div class="index-btn btn btn-success">3</div>
       </div>
+      <% if @product.is_sold == true %>
+        <div class="product-show-sold-wrap">
+          <p>sold out</p>
+        </div>
+      <% end %>
+      <% if @product.is_active == false %>
+        <div class="product-show-is-active-wrap">
+          <p>出品停止中</p>
+        </div>
+      <% end %>
       <div class="product_description">
         <%= @product.description %>
       </div>
@@ -25,11 +35,12 @@
         <% end %>
       </div>
 
-
-      <% if @product.customer_id == current_customer.id %>
-        <%= link_to "編集する", edit_product_path(@product.id), class: "btn btn-danger w-100" %>
-      <% else %>
-        <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-danger w-100" %>
+      <% if @product.is_sold == false && customer_signed_in? %>
+        <% if @product.customer_id == current_customer.id %>
+          <%= link_to "編集する", edit_product_path(@product.id), class: "btn btn-danger w-100" %>
+        <% else %>
+          <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-danger w-100" %>
+        <% end %>
       <% end %>
 
       <div class="likes_buttons" >
@@ -38,8 +49,9 @@
       </div>
     </div>
   </div>
+
   <div class="row">
-    <div class="col-6 plate comment-wrapper">
+    <div class="col-8 plate comment-wrapper">
       <div class="comments">
         <% @post_comments.each do |post_comment| %>
           <h9><%= post_comment.customer.shop_name %></h9><br>
@@ -48,23 +60,31 @@
           <h8><%= post_comment.comment %></h8><br>
           <h7><%= post_comment.created_at.strftime('%Y/%m/%d') %></h7>
 
-          <% if post_comment.customer.id == current_customer.id %>
-            <div class="comment-delete">
-              <%= link_to "削除", product_post_comment_path(@product.id, post_comment.id), method: :delete %>
-            </div>
+          <% if customer_signed_in? %>
+            <% if post_comment.customer.id == current_customer.id && @product.is_sold == false %>
+              <div class="comment-delete">
+                <%= link_to "削除", product_post_comment_path(@product.id, post_comment.id), method: :delete %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>
 
-      <div class="new-comment">
-        <p>相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。</p>
-        <%= form_with(model:[@product, @post_comment], local: true) do |f| %>
-          <%= f.text_area :comment, rows:'3', placeholder: "コメントをここに", class:"w-100" %>
-          <div class="actions">
-            <%= f.submit "コメントする", class:"btn btn-secondary w-100" %>
-          </div>
-        <% end %>
-      </div>
+      <% if customer_signed_in? %>
+        <div class="new-comment">
+          <p>相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。</p>
+          <%= form_with(model:[@product, @post_comment], local: true) do |f| %>
+            <%= f.text_area :comment, rows:'3', placeholder: "コメントをここに", class:"w-100" %>
+            <div class="actions">
+              <% if @product.is_sold == false %>
+                <%= f.submit "コメントする", class:"btn btn-secondary w-100" %>
+              <% else %>
+                <%= f.label :"売り切れのためコメントできません。", class: "btn btn-secondary w-100" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
 
 
 

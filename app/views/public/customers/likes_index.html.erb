@@ -13,8 +13,13 @@
               <div class="products_block">
                 <div class="products">
                   <div class="products_image">
-                    <%= attachment_image_tag like.product.product_images.first, :image, format: 'jpeg', fallback: 'no_image.jpg', size: "150x150", class: "rounded" %>
+                    <%= attachment_image_tag like.product.product_images.first, :image, format: 'jpeg', fallback: 'no_image.jpg', size: "100%", class: "rounded" %>
                   </div>
+                  <% if like.product.is_sold == true %>
+                    <div class="mypage-sold-wrap">
+                      <p>sold out</p>
+                    </div>
+                  <% end %>
                   <p class="products_name"><%= like.product.name %></p>
                 </div>
               </div>

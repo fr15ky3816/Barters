@@ -16,3 +16,20 @@ Genre.create!(
     {genre_name: 'その他'}
     ]
 )
+
+ 5.times do |n|
+    Customer.create!(
+      email: "test#{n}@gmail.com",
+      encrypted_password: "testtarou#{n}",
+      customer_first_name: "太郎#{n}",
+      customer_last_name: "テスト",
+      customer_first_name_kane: "タロウ#{n}",
+      customer_last_name_kane: "テスト",
+      shop_name: "テスト太郎#{n}のお店",
+      shop_description: "テスト太郎#{n}のお店です。テスト太郎#{n}の商品を販売しています。",
+      customer_image_id: File.open("./app/assets/images/no_image.jpg"),
+      
+    )
+  end
+  
+  

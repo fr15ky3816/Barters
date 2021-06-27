@@ -12,8 +12,14 @@ class Public::OrdersController < ApplicationController
 
     @order = Order.new(order_params)
     @offer = Offer.find_by(offer_product_id: @order.order_product_id)
+    @order_product = Product.find_by(id: @order.order_product_id)
+    @order_trade_product = Product.find_by(id: @order.order_trade_product_id)
     if @order.save
       @offer.destroy
+      @order_product.is_sold = true
+      @order_product.save
+      @order_trade_product.is_sold = true
+      @order_trade_product.save
       redirect_to  product_order_complete_path
     else
       @order = Order.new(order_params)
@@ -26,9 +32,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def listing
-    @products = Product.where(customer_id: current_customer.id)
-    @orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: @products.ids))
-    @orders = @orders.where(order_status: "準備中")
+    products = Product.where(customer_id: current_customer.id)
+    orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: products.ids))
+    @orders = orders.where(order_status: "準備中")
+
   end
 
   def in_progress
@@ -37,7 +44,7 @@ class Public::OrdersController < ApplicationController
     @orders = @orders.where(order_status: "準備完了")
 
   end
-  
+
   def completed
     @products = Product.where(customer_id: current_customer.id)
     @orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: @products.ids))
