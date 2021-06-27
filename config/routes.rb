@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     get "product/complete" => "products#complete"
     get "product/offer/complete" => "offers#complete"
     delete "product/:product_id/product_images/:product_image_id" => "product_images#destroy", as: :product_image
+    get "product/order/complete" => "orders#complete"
   end
 
 

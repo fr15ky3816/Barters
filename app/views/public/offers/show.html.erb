@@ -1,50 +1,83 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 plate">
-
-      <table>
-        <% if @offer.customer_id == current_customer.id %>
-          <tr>
-            <th>オファーした商品:</th>
-            <th>交換する商品:</th>
-          </tr>
-        <% else %>
-          <tr>
-            <th>オファーされた商品:</th>
-            <th>交換される商品:</th>
-          </tr>
-        <% end %>
-        <tr>
-          <th><%= @offer.offer_product.name %></th>
-          <th><%= @offer.trade_product.name %></th>
-        </tr>
-      </table>
-
-
+    <div class="col-10 plate">
       <% if @offer.customer_id == current_customer.id %>
-        <%= link_to "オファーの取り下げ", product_offer_path(@offer.offer_product.id, @offer.id), method: :delete %>
+        <div class="offer-detail-wrapper row">
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @offer.offer_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p>オファーした商品:</p><br>
+                <p><%= @offer.offer_product.name %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-detail-product-i col-sm-4">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @offer.trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p>交換する商品:</p><br>
+                <p><%= @offer.trade_product.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
       <% else %>
-        <%= link_to "オファーの承諾", new_product_orders_path(@offer.offer_product.id) %>
+        <div class="offer-detail-wrapper row">
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @offer.offer_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p>オファーされた商品:</p><br>
+                <p><%= @offer.offer_product.name %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-detail-product-i col-sm-4">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @offer.trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p>交換する商品:</p><br>
+                <p><%= @offer.trade_product.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
 
-
-
-
-
-
-
-
-
+      <div class="row">
+        <div class="col-12">
+          <div class="offer-detail-btn-wrapper">
+            <% if @offer.customer_id == current_customer.id %>
+              <%= link_to "オファーの取り下げ", product_offer_path(@offer.offer_product.id, @offer.id), method: :delete, class:"offer-detail-btn btn btn-secondary" %>
+            <% else %>
+              <%= link_to "オファーの承諾", new_product_orders_path(@offer.offer_product.id), class:"offer-detail-btn btn btn-danger" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
 </div>
 
 

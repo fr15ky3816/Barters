@@ -11,18 +11,33 @@ class Public::OrdersController < ApplicationController
   def create
 
     @order = Order.new(order_params)
-    @order.save
-    redirect_to customer_path(@order.customer_id)
+    @offer = Offer.find_by(offer_product_id: @order.order_product_id)
+    if @order.save
+      @offer.destroy
+      redirect_to  product_order_complete_path
+    else
+      @order = Order.new(order_params)
+      @offer = Offer.find_by(offer_product_id: @order.order_product_id)
+      render "public/orders/new"
+    end
   end
-  
+
+  def complete
+  end
+
   def orders_index
     @orders = Order.where(customer_id: current_customer.id)
   end
-  
+
   def ordered_index
     @products = Product.where(customer_id: current_customer.id)
-    @orders = Order.where(order_trade_product_id: @products.ids)
-    
+    @ordereds = Order.where(order_product_id: @products.ids)
+
+  end
+
+  def show
+    @order = Order.find(params[:product_id])
+
   end
 
   private

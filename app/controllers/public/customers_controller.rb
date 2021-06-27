@@ -65,7 +65,7 @@ class Public::CustomersController < ApplicationController
           :shop_name,
           :shop_description,
           :customer_attribute,
-          :customer_image_id
+          :customer_image
           )
     end
 end

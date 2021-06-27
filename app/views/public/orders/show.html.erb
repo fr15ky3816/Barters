@@ -1,24 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-10 plate">
-      <div  class="row">
-        <div class="order-new-header">
-          <p>以下の内容で取引を成立させます</p>
-        </div>
-      </div>
-
-
-      <% if @offer.customer_id == current_customer.id %>
+      <% if @order.customer_id == current_customer.id %>
         <div class="offer-detail-wrapper row">
 
           <div class="offer-detail-product col-sm-4">
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
-                <%= attachment_image_tag @offer.offer_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+                <%= attachment_image_tag @order.order_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
               </div>
               <div class="offer-detail-product-detail">
                 <p>オファーした商品:</p><br>
-                <p><%= @offer.offer_product.name %></p>
+                <p><%= @order.order_product.name %></p>
               </div>
             </div>
           </div>
@@ -30,11 +23,11 @@
           <div class="offer-detail-product col-sm-4">
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
-                <%= attachment_image_tag @offer.trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+                <%= attachment_image_tag @order.order_trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
               </div>
               <div class="offer-detail-product-detail">
                 <p>交換する商品:</p><br>
-                <p><%= @offer.trade_product.name %></p>
+                <p><%= @order.order_trade_product.name %></p>
               </div>
             </div>
           </div>
@@ -45,11 +38,11 @@
           <div class="offer-detail-product col-sm-4">
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
-                <%= attachment_image_tag @offer.offer_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+                <%= attachment_image_tag @order.order_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
               </div>
               <div class="offer-detail-product-detail">
                 <p>オファーされた商品:</p><br>
-                <p><%= @offer.offer_product.name %></p>
+                <p><%= @order.order_product.name %></p>
               </div>
             </div>
           </div>
@@ -61,30 +54,41 @@
           <div class="offer-detail-product col-sm-4">
             <div class="offer-detail-product-block">
               <div class="offer-detail-product-image-block">
-                <%= attachment_image_tag @offer.trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+                <%= attachment_image_tag @order.order_trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
               </div>
               <div class="offer-detail-product-detail">
                 <p>交換する商品:</p><br>
-                <p><%= @offer.trade_product.name %></p>
+                <p><%= @order.order_trade_product.name %></p>
               </div>
             </div>
           </div>
         </div>
       <% end %>
 
+      <div class="row">
+        <div class="col-12">
+          <div class="order-status-wrapper">
+            <% if @order.order_status == 0 %>
+              <h5>準備中です！</h5>
+            <% elsif @order.order_status == 1 %>
+
+            <% elsif @order.order_status == 2 %>
+
+            <% end %>
+
+          </div>
 
 
-      <%= form_with model:[@product, @order], local: true do |f| %>
-        <%= f.hidden_field :customer_id, value: @offer.customer_id %>
-        <%= f.hidden_field :order_product_id, value: @offer.offer_product_id %>
-        <%= f.hidden_field :order_trade_product_id, value: @offer.trade_product_id %>
-        <%= f.hidden_field :order_status, value: "準備中" %>
+          <%= form_with model:[@product, @order], url: product_orders_path(@order.order_product.id), local: true , method: :patch do |f| %>
+            <%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
+            <div class="offer-accept-btn">
+              <%= f.submit "オファーを承諾します", class: "btn btn-success", "data-confirm" => "オファーを承諾しますか？" %>
+            </div>
+          <% end %>
 
-        <div class="offer-accept-btn">
-          <%= f.submit "オファーを承諾します", class: "btn btn-success", "data-confirm" => "オファーを承諾しますか？" %>
         </div>
+      </div>
 
-      <% end %>
 
 
 
@@ -94,4 +98,7 @@
     </div>
   </div>
 </div>
+
+
+
 

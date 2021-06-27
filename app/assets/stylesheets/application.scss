@@ -42,9 +42,9 @@ body {
 }
 
 .complete {
-  height: 100px;
+
   text-align: center;
-  padding-top: 30px;
+  padding: 30px;
 }
 
 .complete h5{
@@ -54,6 +54,9 @@ body {
 .customer-image {
   border-radius: 100%;
 }
+
+
+
 
 /* ヘッダー */
 .logo_image {
@@ -271,6 +274,10 @@ body {
 
 .slides {
   padding: 0 0;
+}
+
+.slide-image {
+  width: 80%;
 }
 
 .product_description {
@@ -492,3 +499,74 @@ body {
   border-bottom: 1px solid #CCCCCC;
 }
 
+/*  オファー詳細 */
+.offer-detail-wrapper {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.offer-detail-product-block {
+  box-shadow: 3px 3px #CCCCCC;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.offer-product-image-block {
+  text-align: center;
+  padding: 5px;
+}
+
+
+.offer-detail-product-image {
+  width: 80%;
+}
+
+.offer-detail-product-i {
+   text-align: center;
+   margin: auto;
+}
+
+.fa-exchange-alt {
+  font-size: 50px;
+  display: block;
+
+}
+
+
+
+
+
+
+.offer-detail-btn-wrapper {
+  text-align: center;
+
+}
+
+.offer-detail-btn {
+  margin: 20px auto;
+  width: 80%;
+}
+
+
+
+
+/* オーダー　newページ */
+
+.order-new-header {
+  border-bottom: 1px solid #CCCCCC;
+  line-height: 50px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+
+}
+
+/*　商品内容はオファー詳細ページと同様 */
+
+.offer-accept-btn {
+  text-align: center;
+  margin: 20px;
+}
+
+/*  オーダー一覧 */
+
+/*  オファー一覧ページと同様  */

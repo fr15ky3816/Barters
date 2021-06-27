@@ -21,16 +21,16 @@
           <%= link_to "#{ @customer.followers.count }フォロワー", customer_followers_path(@customer) %>
         </div>
         <div class="menu-list">
-          <%= link_to "オファーした商品", customer_offers_path(@customer) %>
+          <%= link_to "#{ Offer.where(customer_id: @customer.id).count }オファーした商品", customer_offers_path(@customer) %>
         </div>
         <div class="menu-list">
-          <%= link_to "オファーされた商品", customer_offered_path(@customer) %>
+          <%= link_to "#{ Offer.where(offer_product_id: @customer.products.ids).count }オファーされた商品", customer_offered_path(@customer) %>
         </div>
         <div class="menu-list">
-          <%= link_to "オファー成立商品(オファーした商品)", customer_orders_path(@customer) %>
+          <%= link_to "#{ Order.where(customer_id: @customer.id).count }オファー成立商品(オファーした商品)", customer_orders_path(@customer) %>
         </div>
         <div class="menu-list">
-          <%= link_to "オファー成立商品(オファーされた商品)",customer_ordered_path(@customer) %>
+          <%= link_to "#{ Order.where(order_product_id: @customer.products.ids).count }オファー成立商品(オファーされた商品)",customer_ordered_path(@customer) %>
         </div>
       <% else %>
         <% if current_customer.following?(@customer) %>

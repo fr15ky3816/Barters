@@ -1,6 +1,39 @@
 <div class="container">
-  <% @orders.each do |order| %>
-    <%= order.order_product.name %>
-  <% end %>
+  <div class="row">
+    <div class="col-8 plate">
 
+      <div class="offer-header">
+        <p>オファー成立商品(オファーされた商品)</p>
+      </div>
+
+
+      <div class="product_wrapper">
+        <% if @ordereds.empty? %>
+          <h5>商品はありません</h5>
+        <% else %>
+
+          <% @ordereds.each do |ordered| %>
+            <%= link_to product_orders_path(product_id: ordered.order_product_id) do %>
+              <div class="products_block">
+                <div class="products">
+                  <div class="products_image">
+                    <%= attachment_image_tag ordered.order_product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                  </div>
+                  <p class="products_name"><%= ordered.order_product.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+
+        <% end %>
+      </div>
+
+
+
+    </div>
+  </div>
 </div>
+
+
+
+
