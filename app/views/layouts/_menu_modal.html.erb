@@ -11,8 +11,8 @@
     <div class="modal-btn"><%= link_to "#{ current_customer.followers.count }フォロワー", customer_followers_path(current_customer), class:"text-dark" %></div>
     <div class="modal-btn"><%= link_to "オファーした商品", customer_offers_path(current_customer), class:"text-dark" %></div>
     <div class="modal-btn"><%= link_to "オファーされた商品", customer_offered_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "オファー成立商品(オファーした商品)", customer_orders_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "オファー成立商品(オファーされた商品)",customer_ordered_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "オファー成立商品(準備中)", customer_orders_listing_path(current_customer), class:"text-dark" %></div>
+    <div class="modal-btn"><%= link_to "オファー成立商品(取引中)",customer_orders_in_progress_path(current_customer), class:"text-dark" %></div>
 
   </div>
 </div>

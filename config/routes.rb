@@ -24,8 +24,9 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
       get "offers" => "offers#offers_index"
       get "offered" => "offers#offered_index"
-      get "orders" => "orders#orders_index"
-      get "ordered" => "orders#ordered_index"
+      get "orders/listing" => "orders#listing"
+      get "orders/in_progress" => "orders#in_progress"
+      get "orders/completed" => "orders#completed"
       get "product/index" => "products#index", as: :product_index
     end
     get "customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile

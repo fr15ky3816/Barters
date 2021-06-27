@@ -68,23 +68,37 @@
       <div class="row">
         <div class="col-12">
           <div class="order-status-wrapper">
-            <% if @order.order_status == 0 %>
-              <h5>準備中です！</h5>
-            <% elsif @order.order_status == 1 %>
+            <% if @order.order_status == "準備中" %>
 
-            <% elsif @order.order_status == 2 %>
+              <h5>商品の準備中です！</h5>
+              <p>商品の準備ができたらステータスの変更をしてください！</p>
+
+              <%= form_with model:[@product, @order], url: product_orders_path(@order.order_product.id), local: true , method: :patch do |f| %>
+                <%= f.radio_button :order_status, :"準備完了", checked: true %>
+                <%= f.submit :"ステータス変更", "data-confirm" => "商品の準備ができましたか？" , class: "btn btn-danger" %>
+              <% end %>
+
+            <% elsif @order.order_status == "準備完了" %>
+
+              <h5>商品の準備ができました！</h5>
+              <p>取引が完了しましたらステータスを変更して取引を完了してください！</p>
+
+              <%= form_with model:[@product, @order], url: product_orders_path(@order.order_product.id), local: true , method: :patch do |f| %>
+                <%= f.radio_button :order_status, :"取引完了" %>
+                <%= f.submit "ステータス変更", "data-confirm" => "取引完了しましたか？", class: "btn btn-danger" %>
+              <% end %>
+
+            <% elsif @order.order_status == "取引完了" %>
+
+              <h5>取引が完了しました！</h5>
+              <p></p>
 
             <% end %>
 
           </div>
 
 
-          <%= form_with model:[@product, @order], url: product_orders_path(@order.order_product.id), local: true , method: :patch do |f| %>
-            <%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
-            <div class="offer-accept-btn">
-              <%= f.submit "オファーを承諾します", class: "btn btn-success", "data-confirm" => "オファーを承諾しますか？" %>
-            </div>
-          <% end %>
+
 
         </div>
       </div>

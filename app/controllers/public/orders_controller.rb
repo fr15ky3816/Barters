@@ -25,19 +25,38 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
-  def orders_index
-    @orders = Order.where(customer_id: current_customer.id)
+  def listing
+    @products = Product.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: @products.ids))
+    @orders = @orders.where(order_status: "準備中")
   end
 
-  def ordered_index
+  def in_progress
     @products = Product.where(customer_id: current_customer.id)
-    @ordereds = Order.where(order_product_id: @products.ids)
+    @orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: @products.ids))
+    @orders = @orders.where(order_status: "準備完了")
 
+  end
+  
+  def completed
+    @products = Product.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: @products.ids))
+    @orders = @orders.where(order_status: "取引完了")
   end
 
   def show
     @order = Order.find(params[:product_id])
 
+  end
+
+  def update
+    @order = Order.find(params[:product_id])
+    if @order = Order.update(order_params)
+      redirect_to customer_path(current_customer)
+    else
+      @order = Order.find(params[:product_id])
+      render "public/orders/show"
+    end
   end
 
   private
