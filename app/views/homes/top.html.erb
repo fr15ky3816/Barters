@@ -55,6 +55,164 @@
 </div>
 
 
+<div class="container">
+  <div class="row">
+    <div class="col-10 top-genre-wrapper">
+
+      <div class="top-genre-header">
+        <p>野菜</p>
+      </div>
+      <div class="top-genre-product-wrapper">
+        <% @products_yasai.each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 top-genre-wrapper">
+
+      <div class="top-genre-header">
+        <p>果物</p>
+      </div>
+      <div class="top-genre-product-wrapper">
+        <% @products_kudamono.each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 top-genre-wrapper">
+
+      <div class="top-genre-header">
+        <p>米・雑穀</p>
+      </div>
+      <div class="top-genre-product-wrapper">
+        <% @products_kome_zakkoku.each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 top-genre-wrapper">
+
+      <div class="top-genre-header">
+        <p>加工食品</p>
+      </div>
+      <div class="top-genre-product-wrapper">
+        <% @products_kakousyokuhin.each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 top-genre-wrapper">
+
+      <div class="top-genre-header">
+        <p>飲料</p>
+      </div>
+      <div class="top-genre-product-wrapper">
+        <% @products_inryou.each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 top-genre-wrapper">
+
+      <div class="top-genre-header">
+        <p>その他</p>
+      </div>
+      <div class="top-genre-product-wrapper">
+        <% @products_sonota.each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div class="products_block">
+              <div class="products">
+                <div class="products_image">
+                  <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
+                </div>
+                <p class="products_name"><%= product.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 <div class="product-registrate-btn">
   <%= link_to new_product_path do %>
     <p>出品</p>

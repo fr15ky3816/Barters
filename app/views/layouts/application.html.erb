@@ -8,47 +8,68 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <header>
+
         <div class="btn-right-wrapper">
-          <% if customer_signed_in? %>
-            <%= link_to destroy_customer_session_path, method: :delete, class:"text-success btn-right" do %>
-              <i class="fas fa-sign-out-alt">ログアウト</i>
+          <div class="bar-menu">
+            <i class="fas fa-bars"></i>
+          </div>
+          <div class="menu-right">
+            <% if customer_signed_in? %>
+              <%= link_to destroy_customer_session_path, method: :delete, class:"text-success btn-right" do %>
+                <i class="fas fa-sign-out-alt">ログアウト</i>
+              <% end %>
+              <%= link_to customer_path(current_customer), class:"text-success btn-right mypage" do %>
+                <i><%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>マイページ</i>
+              <% end %>
+            <% else %>
+              <%= link_to new_customer_registration_path, class:"text-success btn-right" do %>
+                <i class="fas fa-user-plus">新規登録</i>
+              <% end %>
+              <%= link_to new_customer_session_path, class:"text-success btn-right" do %>
+                <i class="fas fa-sign-in-alt">ログイン</i>
+              <% end %>
             <% end %>
-            <%= link_to customer_path(current_customer), class:"text-success btn-right mypage" do %>
-              <i><%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>マイページ</i>
-            <% end %>
-          <% else %>
-            <%= link_to new_customer_registration_path, class:"text-success btn-right" do %>
-              <i class="fas fa-user-plus">新規登録</i>
-            <% end %>
-            <%= link_to new_customer_session_path, class:"text-success btn-right" do %>
-              <i class="fas fa-sign-in-alt">ログイン</i>
-            <% end %>
-          <% end %>
+          </div>
         </div>
+
         <%= link_to  root_path do %>
           <%= image_tag "logo_transparent.png", class: "logo_image" %>
         <% end %>
 
 
+
+
+
+
+
+
+
+
+
     </header>
     <%= render "layouts/menu_modal" %>
+    <%= render "layouts/bar_menu_modal" %>
     <%= yield %>
   </body>
 </html>
 
 <script>
-  $('.mypage').hover(function() {
+  $('.mypage').hover(function(){
 
-      $('.menu-modal-wrapper').fadeIn();
-    },
-    function(){
-      $('.menu-modal-wrapper').fadeOut();
-    }
-  );
+    $('.menu-modal-wrapper').css("display","block");
+  },function(){
+      $('.menu-modal-wrapper').css("display", "none");
+  });
 
 
+  $('.bar-menu').hover(function(){
+    $('.bar-menu-modal-wrapper').css("display","block");
+  },function(){
+    $('.bar-menu-modal-wrapper').css("display", "none");
+  });
 </script>

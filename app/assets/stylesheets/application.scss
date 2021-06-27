@@ -81,13 +81,32 @@ body {
   line-height: 100px;
 }
 
-/*.btn-right:hover {
-  top: 2px;
+.bar-menu {
+  display: none;
+  font-size: 70px;
 }
 
 
 
-/* メニューモーダル */
+@media(max-width: 850px){
+  .bar-menu {
+    display: block;
+  }
+
+  .menu-right {
+    display: none;
+  }
+
+  .modal-btn {
+    font-size: 15px;
+  }
+
+}
+
+
+
+
+/* マイページ　メニューモーダル */
 .menu-modal-wrapper {
   width: 300px;
   border: 1px solid #CCCCCC;
@@ -104,7 +123,6 @@ body {
 }
 
 .modal-btn {
-
   line-height: 40px;
   padding-left: 10px;
   border-bottom: 1px solid #CCCCCC;
@@ -114,6 +132,21 @@ body {
   background-color: #CCCCCC;
   font-size: 18px;
 }
+
+/*  バーメニュー　モーダル  */
+.bar-menu-modal-wrapper {
+  width: 300px;
+  border: 1px solid #CCCCCC;
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  z-index: 100;
+  display: none;
+  background-color: white;
+}
+
+
+
 
 
 
@@ -194,6 +227,20 @@ body {
   line-height: 80px;
 
 }
+
+.top-genre-wrapper {
+  width: 100%;
+}
+
+.top-genre-header {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.top-genre-product-wrapper {
+  text-align: center;
+}
+
 
 .product_wrapper {
   text-align: center;
