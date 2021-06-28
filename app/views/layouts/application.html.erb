@@ -41,6 +41,11 @@
           <%= image_tag "logo_transparent.png", class: "logo_image" %>
         <% end %>
 
+        <% unless customer_signed_in? %>
+          <%= link_to homes_guest_sign_in_path, method: :post, class:"btn btn-danger guest_sign_in_btn" do %>
+            <i class="fas fa-sign-in-alt">ゲストログイン（閲覧用）</i>
+          <% end %>
+        <% end %>
 
 
 

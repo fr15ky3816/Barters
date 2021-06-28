@@ -51,8 +51,7 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
   get "/about" => "homes#about"
-
-
+  post "homes/guest_sign_in" => "homes#guest_sign_in"
 
 
 
