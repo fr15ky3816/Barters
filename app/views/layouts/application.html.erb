@@ -24,7 +24,7 @@
                 <i class="fas fa-sign-out-alt">ログアウト</i>
               <% end %>
               <%= link_to customer_path(current_customer), class:"text-success btn-right mypage" do %>
-                <i><%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>マイページ</i>
+                <p><%= attachment_image_tag @customer, :customer_image, format: 'jpeg', fallback: 'no_image.jpg' , size: "50x50", class: "customer-image" %>マイページ</p>
               <% end %>
             <% else %>
               <%= link_to new_customer_registration_path, class:"text-success btn-right" do %>

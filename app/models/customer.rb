@@ -27,6 +27,7 @@ class Customer < ApplicationRecord
   enum customer_attribute: {"生産者": 0, "飲食店": 1, "その他ユーザー": 2}
 
   attachment :customer_image
+  
 
 
 

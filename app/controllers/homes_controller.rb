@@ -1,7 +1,9 @@
 class HomesController < ApplicationController
   def top
     products = Product.where(is_sold: false, is_active: true)
-    @products = products.order(updated_at: :desc)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
     # いいねした商品
     if customer_signed_in?
       @likes = current_customer.likes

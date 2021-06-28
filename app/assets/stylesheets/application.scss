@@ -21,6 +21,10 @@ ul {
   list-style: none;
 }
 
+.container {
+  min-width: 300px;
+}
+
 header {
   height: 100px;
   box-shadow: 0px 3px #808080;
@@ -313,6 +317,35 @@ body {
 .product-registrate-btn i{
   font-size: 45px;
   color: white;
+}
+
+/*  アバウトページ */
+
+.about-header {
+  width: 100%;
+  height: 500px;
+  background-image: image-url("3515774_m.jpg");
+  background-size: cover;
+  background-position: 20% 40%;
+  box-shadow: 0px 3px #808080;
+}
+.about-top-wrapper {
+  color:  #777777;
+  padding: 30px;
+}
+.about-contents-wrapper {
+  color: #777777;
+  padding: 30px;
+}
+.about-contents-wrapper span{
+  color:  #777777;
+
+  font-size: 30px;
+}
+.about-contents-wrapper2 {
+  color: #777777;
+  background-color: white;
+  padding: 30px;
 }
 
 

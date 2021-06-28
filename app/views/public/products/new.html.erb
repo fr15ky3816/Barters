@@ -21,8 +21,10 @@
         例）ほうれん草　１０kg",
         rows: "5" ,class: "w-100" %>
 
-        <h4>ジャンル</h4>
-        <%= f.collection_select :genre_id, @genres, :id, :genre_name, prompt: "選択してください", class: "w-100" %>
+        <% if current_customer.customer_attribute == "生産者" %>
+          <h4>ジャンル</h4>
+          <%= f.collection_select :genre_id, @genres, :id, :genre_name, prompt: "選択してください", class: "w-100" %>
+        <% end %>
         <div class="actions">
           <%= f.submit '投稿' ,class: "w-100 btn btn-danger" %>
         </div>
