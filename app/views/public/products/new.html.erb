@@ -21,10 +21,11 @@
         例）ほうれん草　１０kg",
         rows: "5" ,class: "w-100" %>
 
-        <% if current_customer.customer_attribute == "生産者" %>
-          <h4>ジャンル</h4>
-          <%= f.collection_select :genre_id, @genres, :id, :genre_name, prompt: "選択してください", class: "w-100" %>
-        <% end %>
+
+        <h4>ジャンル</h4>
+        <h9>飲食店、その他ユーザーの方は<br>”その他(飲食店)”、”その他(その他ユーザー)”を選択してください。</h9><br>
+        <%= f.collection_select :genre_id, @genres, :id, :genre_name, prompt: "選択してください", class: "w-100" %>
+
         <div class="actions">
           <%= f.submit '投稿' ,class: "w-100 btn btn-danger" %>
         </div>

@@ -1,15 +1,11 @@
 class Public::OrdersController < ApplicationController
-
-
   def new
     @product = Product.find(params[:product_id])
     @offer = Offer.find_by(offer_product_id: @product.id)
     @order = Order.new
-
   end
 
   def create
-
     @order = Order.new(order_params)
     @offer = Offer.find_by(offer_product_id: @order.order_product_id)
     @order_product = Product.find_by(id: @order.order_product_id)
@@ -35,14 +31,12 @@ class Public::OrdersController < ApplicationController
     products = Product.where(customer_id: current_customer.id)
     orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: products.ids))
     @orders = orders.where(order_status: "準備中")
-
   end
 
   def in_progress
     @products = Product.where(customer_id: current_customer.id)
     @orders = Order.where(customer_id: current_customer.id).or(Order.where(order_product_id: @products.ids))
     @orders = @orders.where(order_status: "準備完了")
-
   end
 
   def completed
@@ -53,7 +47,6 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:product_id])
-
   end
 
   def update
@@ -71,5 +64,4 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:customer_id, :order_product_id, :order_trade_product_id, :order_status)
   end
-
 end

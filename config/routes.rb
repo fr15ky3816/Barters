@@ -1,21 +1,18 @@
 Rails.application.routes.draw do
-
   devise_for :admins, controllers: {
-        sessions: 'admins/sessions',
-        passwords: "admins/passwords",
-        registrations: "admins/registrations"
-      }
-
-
+    sessions: 'admins/sessions',
+    passwords: "admins/passwords",
+    registrations: "admins/registrations",
+  }
 
   devise_for :customers, skip: :all
-    devise_scope :customer do
-      get 'customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
-      post 'customers', to: 'public/registrations#create', as: :customer_registration
-      get "customers/sign_in", to: "public/sessions#new", as: :new_customer_session
-      post "customers/sign_in", to: "public/sessions#create",as: :customer_session
-      delete "customers/sign_out", to: "public/sessions#destroy",as: :destroy_customer_session
-    end
+  devise_scope :customer do
+    get 'customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
+    post 'customers', to: 'public/registrations#create', as: :customer_registration
+    get "customers/sign_in", to: "public/sessions#new", as: :new_customer_session
+    post "customers/sign_in", to: "public/sessions#create", as: :customer_session
+    delete "customers/sign_out", to: "public/sessions#destroy", as: :destroy_customer_session
+  end
 
   scope module: :public do
     resources :customers do
@@ -35,7 +32,6 @@ Rails.application.routes.draw do
     patch 'customers/:id/create_profile' => 'customers#profile_create', as: :customer_create_profile
     get 'customer/complete' => 'customers#complete', as: :customer_complete
 
-
     resources :products, only: [:new, :create, :show, :edit, :update, :destroy] do
       resource :likes, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
@@ -48,11 +44,7 @@ Rails.application.routes.draw do
     get "product/order/complete" => "orders#complete"
   end
 
-
   root to: "homes#top"
   get "/about" => "homes#about"
   post "homes/guest_sign_in" => "homes#guest_sign_in"
-
-
-
 end

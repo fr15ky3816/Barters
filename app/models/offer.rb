@@ -7,5 +7,4 @@ class Offer < ApplicationRecord
   validates :offer_product_id, presence: true
   validates :customer_id, presence: true
   validates :trade_product_id, presence: true
-
 end

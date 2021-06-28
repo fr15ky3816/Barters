@@ -44,9 +44,9 @@
       <% end %>
 
       <div class="likes_buttons" >
-         <%= render partial: 'public/products/like', locals: {product: @product} %>
-         <p>コメント件数：<%= @post_comments.count %></p>
+         <%= render partial: 'public/products/like', locals: {product: @product , post_comments: @post_comments } %>
       </div>
+
     </div>
   </div>
 

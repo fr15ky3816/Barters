@@ -14,13 +14,20 @@
 
         <div class="profile-form">
           <div class="field">
-            <%= f.label :"ショップ画像" %><br />
+            <%= f.label :"ショップ画像" %><br>
             <%= f.attachment_field :customer_image %>
           </div>
           <div class="field">
-            <%= f.label :"ショップ説明" %><br />
+            <%= f.label :"ショップ説明" %><br>
             <%= f.text_area :shop_description, rows: "5", placeholder: "ショップの説明文を入力してください", class:"w-100" %>
           </div>
+          <div class="field">
+            <%= f.label :"ユーザー属性" %><br>
+            <h9>トップページには生産者の商品のみが掲載されます</h9><br>
+            <%= f.select :customer_attribute, ["生産者","飲食店", "その他ユーザー"]  %>
+          </div>
+
+
           <div class="actions">
             <%= f.submit "変更をする", class: "btn btn-danger w-100" %>
           </div>

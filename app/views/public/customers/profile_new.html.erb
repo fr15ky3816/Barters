@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 plate">
+    <div class="col-8 plate">
 
       <div class="form-header">
         <h5>会員登録</h5>
@@ -8,12 +8,12 @@
       <%= form_with model: @customer, url: customer_create_profile_path(@customer), local: true do |f| %>
         <div class="field">
           <%= f.label :"ショップ名" %><br />
-          <%= f.text_field :shop_name, autofocus: true, style: "border: none", placeholder: "ショップ名", value: "#{@customer.customer_last_name}さんのショップ" %>
+          <%= f.text_field :shop_name, autofocus: true, style: "border: none", placeholder: "ショップ名", value: "#{@customer.customer_last_name}さんのショップ", class: "w-100" %>
         </div>
 
         <div class="field">
           <%= f.label :"ショップ説明" %><br />
-          <%= f.text_area :shop_description, style: "border: none", placeholder: "ショップの説明文を入力してください" %>
+          <%= f.text_area :shop_description, style: "border: none", placeholder: "ショップの説明文を入力してください。後でマイページから編集できます。", rows: "5", class: "w-100" %>
         </div>
 
         <div class="field">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="field">
-          <%= f.label :"ユーザー属性" %><br>
+          <%= f.label :"ユーザー属性" %><span>＊必須＊</span><br>
 
           <%= f.select :customer_attribute, Customer.customer_attributes.keys.to_a , prompt: "--選択してください--" %>
         </div>

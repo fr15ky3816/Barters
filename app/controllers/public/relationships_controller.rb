@@ -1,5 +1,4 @@
 class Public::RelationshipsController < ApplicationController
-
   def create
     current_customer.follow(params[:customer_id])
     redirect_to request.referer
@@ -19,6 +18,4 @@ class Public::RelationshipsController < ApplicationController
     customer = Customer.find(params[:customer_id])
     @customers = customer.followers
   end
-
-
 end

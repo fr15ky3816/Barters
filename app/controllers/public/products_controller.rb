@@ -1,10 +1,11 @@
 class Public::ProductsController < ApplicationController
-
   def new
     if customer_signed_in?
       @product = Product.new
       @product.product_images.build
-      @genres = Genre.all
+      if current_customer.customer_attribute = "生産者"
+        @genres = Genre.all
+      end
     else
       redirect_to new_customer_registration_path
     end
@@ -17,7 +18,7 @@ class Public::ProductsController < ApplicationController
 
       redirect_to product_complete_path
     else
-      @genres =Genre.all
+      @genres = Genre.all
       render "public/products/new"
     end
   end
@@ -49,8 +50,6 @@ class Public::ProductsController < ApplicationController
     @product.update(product_params)
     redirect_to product_path(@product.id)
   end
-
-
 
   private
 

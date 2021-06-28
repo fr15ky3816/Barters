@@ -1,6 +1,4 @@
 class Public::PostCommentsController < ApplicationController
-
-
   def create
     product = Product.find_by(id: params[:product_id])
     comment = current_customer.post_comments.new(post_comment_params)
@@ -15,11 +13,9 @@ class Public::PostCommentsController < ApplicationController
     redirect_to request.referer
   end
 
-
   private
 
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end
-
 end

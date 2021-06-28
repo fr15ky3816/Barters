@@ -13,7 +13,9 @@ Genre.create!(
     {genre_name: '米・雑穀'},
     {genre_name: '加工食品'},
     {genre_name: '飲料'},
-    {genre_name: 'その他'}
+    {genre_name: 'その他'},
+    {genre_name: 'その他(飲食店)'},
+    {genre_name: 'その他(その他ユーザー)'}
     ]
 )
 
