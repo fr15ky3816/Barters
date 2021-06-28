@@ -49,7 +49,7 @@
   
   * テーブル定義書（https://drive.google.com/file/d/1Imqj7BhY1gPq38XG_BVY8aSZNuHeF73p/view?usp=sharing）
 ## チャレンジ要素一覧
-  * チャレンジ要素一覧（https://docs.google.com/spreadsheets/d/1Uqk7aJu_OgppnLsnrAEJe2xI1BnNlB_9QUgpyxwT21U/edit?usp=sharing）
+  * チャレンジ要素一覧（https://docs.google.com/spreadsheets/d/1q62Ez9SaFiv2uMdoYdkgM-xtmpndw9f9oHxic5rJ-hs/edit?usp=sharing）
 
 ## 開発環境
 - OS：Linux(CentOS)
