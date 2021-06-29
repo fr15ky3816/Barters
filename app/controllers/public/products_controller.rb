@@ -1,12 +1,16 @@
 class Public::ProductsController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, except: [:index, :show, :index_1, :index_2, :index_3, :index_4, :index_5, :index_6, :index_7, :index_8, :search]
 
   def new
     if customer_signed_in?
       @product = Product.new
       @product.product_images.build
       if current_customer.customer_attribute = "生産者"
-        @genres = Genre.all
+        @genres = Genre.where(id: 1..6)
+      elsif current_customer.customer_attribute = "飲食店"
+        @genres = Genre.find(7)
+      else
+        @genres = Genre.find(8)
       end
     else
       redirect_to new_customer_registration_path
@@ -56,52 +60,56 @@ class Public::ProductsController < ApplicationController
   def index_1
     products = Product.where(is_sold: false, is_active: true)
     products = products.order(updated_at: :desc)
-    customer = Customer.where(customer_attribute: "生産者")
-    products = products.where(customer_id: customer.ids)
     @products = products.where(genre_id: 1)
   end
-  
+
   def index_2
     products = Product.where(is_sold: false, is_active: true)
     products = products.order(updated_at: :desc)
-    customer = Customer.where(customer_attribute: "生産者")
-    products = products.where(customer_id: customer.ids)
     @products = products.where(genre_id: 2)
   end
-  
+
   def index_3
     products = Product.where(is_sold: false, is_active: true)
     products = products.order(updated_at: :desc)
-    customer = Customer.where(customer_attribute: "生産者")
-    products = products.where(customer_id: customer.ids)
     @products = products.where(genre_id: 3)
   end
-  
+
   def index_4
     products = Product.where(is_sold: false, is_active: true)
     products = products.order(updated_at: :desc)
-    customer = Customer.where(customer_attribute: "生産者")
-    products = products.where(customer_id: customer.ids)
     @products = products.where(genre_id: 4)
   end
-  
+
   def index_5
     products = Product.where(is_sold: false, is_active: true)
     products = products.order(updated_at: :desc)
-    customer = Customer.where(customer_attribute: "生産者")
-    products = products.where(customer_id: customer.ids)
     @products = products.where(genre_id: 5)
   end
-  
+
   def index_6
     products = Product.where(is_sold: false, is_active: true)
     products = products.order(updated_at: :desc)
-    customer = Customer.where(customer_attribute: "生産者")
-    products = products.where(customer_id: customer.ids)
     @products = products.where(genre_id: 6)
   end
 
+  def index_7
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    @products = products.where(genre_id: 7)
+  end
 
+  def index_8
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    @products = products.where(genre_id: 8)
+  end
+
+  def search
+    products = Product.search(params[:keyword])
+    @products = products.where(is_sold: false, is_active: true)
+    @keyword = params[:keyword]
+  end
 
 
 

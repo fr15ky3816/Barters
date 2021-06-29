@@ -3,10 +3,21 @@ class Admins::CustomersController < ApplicationController
 
 
   def index
-    customers = Customer.all.order(created_at: :desc)
+    customers = Customer.where(customer_attribute: "生産者").all.order(created_at: :desc)
     @customers_on = customers.where(is_deleted: false)
     @customers_off = customers.where(is_deleted: true)
+  end
 
+  def index_innsyoku
+    customers = Customer.where(customer_attribute: "飲食店").all.order(created_at: :desc)
+    @customers_on = customers.where(is_deleted: false)
+    @customers_off = customers.where(is_deleted: true)
+  end
+
+  def index_sonota
+    customers = Customer.where(customer_attribute: "その他ユーザー").all.order(created_at: :desc)
+    @customers_on = customers.where(is_deleted: false)
+    @customers_off = customers.where(is_deleted: true)
   end
 
   def show

@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, except: [:show]
 
   def edit
     @customer = Customer.find_by(id: current_customer.id)

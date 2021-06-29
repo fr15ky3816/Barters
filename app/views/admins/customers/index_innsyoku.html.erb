@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 plate">
+
+      <div class="user-index-header">
+        <h3>飲食店ユーザー</h3>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="followers-header">
+          <p><%= @customers_on.count %><br>利用中ユーザー</p>
+        </div>
+        <% @customers_on.each do |customer| %>
+          <%= link_to admins_customer_path(customer.id) do %>
+            <div class="follow-customer-block">
+              <div class="follow-customers">
+                  <%= attachment_image_tag customer, :customer_image, size: "50x50", fallback: 'no_image.jpg',class: "customer-image" %><br>
+                  <%= customer.shop_name %><br>
+              </div>
+            </div>
+
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="followers-header">
+            <p><%= @customers_off.count %><br>一時退会したユーザー</p>
+          </div>
+          <% @customers_off.each do |customer| %>
+            <%= link_to admins_customer_path(customer.id) do %>
+              <div class="follow-customer-block">
+                <div class="follow-customers">
+                    <%= attachment_image_tag customer, :customer_image, size: "50x50", fallback: 'no_image.jpg',class: "customer-image" %><br>
+                    <%= customer.shop_name %><br>
+                </div>
+              </div>
+
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

@@ -23,7 +23,8 @@
 
 
         <h4>ジャンル</h4>
-        <h9>飲食店、その他ユーザーの方は<br>”その他(飲食店)”、”その他(その他ユーザー)”を選択してください。</h9><br>
+        <h9>飲食店、その他ユーザーの方は<br>
+        ”その他(飲食店)”、”その他(その他ユーザー)”が自動選択されます。</h9><br>
         <%= f.collection_select :genre_id, @genres, :id, :genre_name, prompt: "選択してください", class: "w-100" %>
 
         <div class="actions">

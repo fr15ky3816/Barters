@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     get "product/index_4" => "products#index_4", as: :product_index_4
     get "product/index_5" => "products#index_5", as: :product_index_5
     get "product/index_6" => "products#index_6", as: :product_index_6
+    get "product/index_7" => "products#index_7", as: :product_index_7
+    get "product/index_8" => "products#index_8", as: :product_index_8
 
     get "customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
@@ -50,9 +52,12 @@ Rails.application.routes.draw do
     get "product/offer/complete" => "offers#complete"
     delete "product/:product_id/product_images/:product_image_id" => "product_images#destroy", as: :product_image
     get "product/order/complete" => "orders#complete"
+    get "search" => "products#search"
   end
 
   namespace :admins do
+    get "customers/innsyoku" => "customers#index_innsyoku"
+    get "customers/sonota" => "customers#index_sonota"
     resources :customers, only: [:index, :show, :edit, :destroy, :update] do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
@@ -67,6 +72,7 @@ Rails.application.routes.draw do
      resource :orders
     end
     get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
+    get "search" => "products#search"
   end
 
 
@@ -74,4 +80,5 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about" => "homes#about"
   post "homes/guest_sign_in" => "homes#guest_sign_in"
+
 end

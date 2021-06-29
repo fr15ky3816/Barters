@@ -24,6 +24,11 @@ class Admins::ProductsController < ApplicationController
     @customer = @product.customer
   end
 
+  def search
+    products = Product.search(params[:keyword])
+    @products = products.where(is_sold: params[:is_sold], is_active: params[:is_active])
+    @keyword = params[:keyword]
+  end
 
 
 

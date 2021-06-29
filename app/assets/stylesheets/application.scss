@@ -222,6 +222,9 @@ body {
   font-size: 18px;
 }
 
+.search-form {
+  padding: 10px;
+}
 
 
 /* 新規登録　*/
@@ -392,7 +395,7 @@ body {
   z-index: 30;
   position: absolute;
   top: 130px;
-  left: 30px;
+  right: 30px;
 
 }
 
@@ -820,4 +823,13 @@ body {
 .category-index-wrapper {
   width: 100%;
   margin-top: 120px;
+}
+
+/*  管理者側 */
+
+.user-index-header {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #CCCCCC;
+
 }

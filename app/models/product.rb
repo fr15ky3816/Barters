@@ -30,4 +30,8 @@ class Product < ApplicationRecord
   validates :description, length: { maximum: 1000 }
   validates :description, presence: true
 
+  def self.search(keyword)
+    where(["name like? OR description like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
 end

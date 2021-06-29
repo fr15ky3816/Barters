@@ -1,5 +1,12 @@
 <div class="category-menu category-menu-modal-wrapper">
 
+  <div class="search-form">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, placeholder: "キーワードを入力" %>
+      <%= f.submit 'Search' %>
+    <% end %>
+  </div>
+
   <div class="category-menu-btn-modal">
     <div class="category-modal-btn"><%= link_to "野菜", product_index_1_path, class:"text-dark" %></div>
     <div class="category-modal-btn"><%= link_to "果物", product_index_2_path, class:"text-dark" %></div>
@@ -7,5 +14,7 @@
     <div class="category-modal-btn"><%= link_to "加工食品", product_index_4_path, class:"text-dark" %></div>
     <div class="category-modal-btn"><%= link_to "飲料", product_index_5_path, class:"text-dark" %></div>
     <div class="category-modal-btn"><%= link_to "その他", product_index_6_path, class:"text-dark" %></div>
+    <div class="category-modal-btn"><%= link_to "その他(飲食店)", product_index_7_path, class:"text-dark" %></div>
+    <div class="category-modal-btn"><%= link_to "その他(その他ユーザー)", product_index_8_path, class:"text-dark" %></div>
   </div>
 </div>

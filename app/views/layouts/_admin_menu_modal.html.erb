@@ -6,8 +6,10 @@
   <div class="menu-btn-modal">
     <div class="admin-modal-btn"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-dark" %></div>
     <div class="admin-modal-btn"><%= link_to "商品一覧", admins_products_path, class:"text-dark" %></div>
-    <div class="admin-modal-btn"><%= link_to "利用者一覧", admins_customers_path, class:"text-dark" %></div>
-    
+    <div class="admin-modal-btn"><%= link_to "生産者一覧", admins_customers_path, class:"text-dark" %></div>
+    <div class="admin-modal-btn"><%= link_to "飲食店一覧", admins_customers_innsyoku_path, class:"text-dark" %></div>
+    <div class="admin-modal-btn"><%= link_to "その他ユーザー一覧", admins_customers_sonota_path, class:"text-dark" %></div>
+
 
   </div>
 </div>
