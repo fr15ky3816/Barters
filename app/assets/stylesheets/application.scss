@@ -154,10 +154,22 @@ body {
   border-bottom: 1px solid #CCCCCC;
 }
 
+.admin-modal-btn {
+  line-height: 60px;
+  padding-left: 10px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
 .modal-btn:hover {
-  background-color: #CCCCCC;
+  background-color: #EEEEEE;
   font-size: 18px;
 }
+
+.admin-modal-btn:hover {
+  background-color: #EEEEEE;
+  font-size: 18px;
+}
+
 
 /*  バーメニュー　モーダル  */
 .bar-menu-modal-wrapper {

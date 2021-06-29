@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @product = Product.find(params[:product_id])
     @offer = Offer.find_by(offer_product_id: @product.id)

@@ -1,4 +1,6 @@
 class Public::OffersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @product = Product.find(params[:product_id])
     @current_customer_product = Product.where(customer_id: current_customer.id, is_active: true, is_sold: false)

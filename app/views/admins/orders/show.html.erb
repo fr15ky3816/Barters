@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 plate">
+      <% if @order.customer_id == @customer.id %>
+        <div class="offer-detail-wrapper row">
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @order.order_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p><%= @customer.shop_name %><br>さんがオファーした商品:</p><br>
+                <p><%= @order.order_product.name %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-detail-product-i col-sm-4">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @order.order_trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p>交換する商品:</p><br>
+                <p><%= @order.order_trade_product.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="offer-detail-wrapper row">
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @order.order_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p><%= @customer.shop_name %><br>さんがオファーされた商品:</p><br>
+                <p><%= @order.order_product.name %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-detail-product-i col-sm-4">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+
+          <div class="offer-detail-product col-sm-4">
+            <div class="offer-detail-product-block">
+              <div class="offer-detail-product-image-block">
+                <%= attachment_image_tag @order.order_trade_product.product_images.first, :image, format: "jpeg", fallback: 'no_image.jpg', class: "offer-detail-product-image" %>
+              </div>
+              <div class="offer-detail-product-detail">
+                <p>交換する商品:</p><br>
+                <p><%= @order.order_trade_product.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="order-status-wrapper">
+            <h4>取引ステータス</h4>
+            <% if @order.order_status == "準備中" %>
+              <h5>商品の準備中です！</h5>
+            <% elsif @order.order_status == "準備完了" %>
+              <h5>商品の準備ができました！</h5>
+            <% elsif @order.order_status == "取引完了" %>
+              <h5>取引が完了しました！</h5>
+            <% end %>
+
+          </div>
+          <div class="order-status-form">
+
+            <%= form_with model:[@product, @order], url: admins_product_orders_path(product_id: @order.order_product.id, customer_id: @customer.id), local: true , method: :patch do |f| %>
+              <%= f.label :"準備中" %>
+              <%= f.radio_button :order_status, :"準備中" %><br>
+              <%= f.label :"準備完了" %>
+              <%= f.radio_button :order_status, :"準備完了" %><br>
+              <%= f.label :"取引完了" %>
+              <%= f.radio_button :order_status, :"取引完了" %><br>
+              <div class="actions">
+                <%= f.submit :"ステータス変更", "data-confirm" => "ステータスを変更します" , class: "btn btn-danger" %>
+              </div>
+
+            <% end %>
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+

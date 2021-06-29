@@ -1,0 +1,56 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-8 plate">
+
+      <div class="followers-lists">
+        <% if @customers.empty? %>
+          <div class="followers-header">
+            <p><%= @customer.shop_name %>さんがフォローしている人はいません</p>
+          </div>
+        <% else %>
+          <div class="followers-header">
+            <p><%= @customers.count %><br>フォロー中</p>
+          </div>
+          <% @customers.each do |customer| %>
+            <%= link_to customer_product_index_path(customer.id) do %>
+              <div class="follow-customer-block">
+                <div class="follow-customers">
+                  <div class="products_image">
+                    <%= attachment_image_tag customer, :customer_image, size: "30x30", fallback: 'no_image.jpg',class: "customer-image" %><br>
+                    <%= customer.shop_name %><br>
+
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

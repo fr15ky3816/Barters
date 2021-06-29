@@ -45,11 +45,20 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resources :customers, only: [:index, :show, :edit, :destroy, :update]
+    resources :customers, only: [:index, :show, :edit, :destroy, :update] do
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+      get "offers" => "offers#offers_index"
+      get "offered" => "offers#offered_index"
+      get "orders/listing" => "orders#listing"
+      get "orders/in_progress" => "orders#in_progress"
+      get "orders/completed" => "orders#completed"
+    end
     resources :products, only: [:index, :show, :edit,] do
-     resources :offers
+     resources :offers, only: [:show, :destroy]
      resource :orders
     end
+    get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
   end
 
 

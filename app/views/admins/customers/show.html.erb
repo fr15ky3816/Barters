@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 plate menu-lists">
+
+      <div class="menu-list">
+        <%= link_to "出品した商品 ", customer_product_index_path(@customer.id) %>
+      </div>
+
+      <div class="menu-list">
+        <%= link_to "いいねした商品", admins_customer_likes_index_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "ユーザー情報編集", edit_admins_customer_path(@customer.id) %>
+      </div>
+
+      <div class="menu-list">
+        <%= link_to "#{ @customer.followings.count }フォロー中", admins_customer_followings_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "#{ @customer.followers.count }フォロワー", admins_customer_followers_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "#{ Offer.where(customer_id: @customer.id).count }オファーした商品", admins_customer_offers_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "#{ Offer.where(offer_product_id: @customer.products.ids).count }オファーされた商品", admins_customer_offered_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "オファー成立商品(準備中)", admins_customer_orders_listing_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "オファー成立商品(取引中)", admins_customer_orders_in_progress_path(@customer.id) %>
+      </div>
+      <div class="menu-list">
+        <%= link_to "オファー成立商品(取引完了済み)", admins_customer_orders_completed_path(@customer.id) %>
+        </div>
+
+    </div>
+
+    <div class="col-sm-8 plate">
+      <div class="mypage-profile">
+        <%= attachment_image_tag @customer, :customer_image, size: "50x50", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
+        <h5><%= @customer.shop_name %>さんのマイページ</h5>
+        <p><%= @customer.shop_description %></p>
+        <p>出品数:<%= @customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= @customer.orders.count %></p>
+      </div>
+      <div class="mypage-products">
+        <% unless @customer.products.empty? %>
+          <% @customer.products.each do |product| %>
+            <%= link_to product_path(product) do %>
+              <div class="products_block">
+                <div class="products">
+                  <div class="products_image">
+                    <%= attachment_image_tag product.product_images.first, :image, format: 'jpeg', fallback: 'no_image.jpg', class: "product_image" %>
+                  </div>
+                  <% if product.is_sold == true %>
+                    <div class="mypage-sold-wrap">
+                      <p>sold out</p>
+                    </div>
+                  <% end %>
+                  <p class="products_name"><%= product.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h7>まだ商品はありません</h7>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-registrate-btn">
+    <%= link_to new_product_path do %>
+      <p>出品</p>
+      <i class="fas fa-camera"></i>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+

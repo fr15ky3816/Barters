@@ -1,10 +1,17 @@
 class Admins::CustomersController < ApplicationController
 
+  before_action :authenticate_admin!
+
+
   def index
     customers = Customer.all.order(created_at: :desc)
     @customers_on = customers.where(is_deleted: false)
     @customers_off = customers.where(is_deleted: true)
 
+  end
+
+  def show
+    @customer = Customer.find_by(id: params[:id])
   end
 
   def edit
@@ -22,6 +29,10 @@ class Admins::CustomersController < ApplicationController
       flash[:failed] = "会員情報の更新が失敗しました。"
       render :edit
     end
+  end
+
+  def likes_index
+    @customer = Customer.find_by(id: params[:id])
   end
 
 
