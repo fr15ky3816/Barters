@@ -34,7 +34,7 @@
           <%= link_to admins_customer_path(@product.customer.id) do %>
             <%= @product.customer.shop_name %>
           <% end %>
-        <% elsif customer_signed_in? %>
+        <% elsif customer_signed_in? && @product.customer_id == current_customer.id %>
           <%= link_to customer_path(@product.customer.id) do %>
             <%= @product.customer.shop_name %>
           <% end %>

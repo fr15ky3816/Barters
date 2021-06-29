@@ -31,6 +31,24 @@
           <div class="actions">
             <%= f.submit "変更をする", class: "btn btn-danger w-100" %>
           </div>
+
+          <% if @customer.is_deleted == false %>
+            <%= form_with model: @customer, local: true do |f| %>
+              <div class="actions">
+                <%= f.hidden_field :is_deleted, value: true %>
+                <%= f.submit '退会する', class:"btn btn-secondary w-100" %><br>
+                <p>情報は保持され、いつでも再開できます。</p>
+              </div>
+            <% end %>
+          <% else %>
+            <%= form_with model: @customer, local: true do |f| %>
+              <div class="actions">
+                <%= f.hidden_field :is_deleted, value: true %>
+                <%= f.submit '利用を再開する', class:"btn btn-success w-100" %>
+              </div>
+            <% end %>
+          <% end %>
+
         </div>
       <% end %>
 
