@@ -26,6 +26,14 @@ Rails.application.routes.draw do
       get "orders/completed" => "orders#completed"
       get "product/index" => "products#index", as: :product_index
     end
+
+    get "product/index_1" => "products#index_1", as: :product_index_1
+    get "product/index_2" => "products#index_2", as: :product_index_2
+    get "product/index_3" => "products#index_3", as: :product_index_3
+    get "product/index_4" => "products#index_4", as: :product_index_4
+    get "product/index_5" => "products#index_5", as: :product_index_5
+    get "product/index_6" => "products#index_6", as: :product_index_6
+
     get "customer/:id/show_profile" => "customers#show_profile", as: :customer_show_profile
     get "customer/:id/likes" => "customers#likes_index", as: :customer_likes_index
     get 'customers/:id/new_profile' => "customers#profile_new", as: :customer_new_profile

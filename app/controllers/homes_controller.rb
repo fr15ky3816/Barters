@@ -7,6 +7,7 @@ class HomesController < ApplicationController
     # いいねした商品
     if customer_signed_in?
       @likes = current_customer.likes
+      @customer = current_customer
     end
     @products_yasai = products.where(genre_id: 1)
     @products_kudamono = products.where(genre_id: 2)

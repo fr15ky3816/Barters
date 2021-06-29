@@ -1,22 +1,22 @@
 <% if customer_signed_in? %>
-<div class="mypage menu-modal-wrapper">
-  <div class="profile-detail-modal">
-    <%= attachment_image_tag current_customer, :customer_image, format: 'jpeg', fallback: 'no_image.jpg' ,class: "menu-modal-customer-image" %>
-    <p><%= current_customer.shop_name %></p>
-    <p>出品数:<%= current_customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= current_customer.orders.count %></p>
+  <div class="mypage menu-modal-wrapper">
+    <div class="profile-detail-modal">
+      <%= attachment_image_tag current_customer, :customer_image, format: 'jpeg', fallback: 'no_image.jpg' ,class: "menu-modal-customer-image" %>
+      <p><%= current_customer.shop_name %></p>
+      <p>出品数:<%= current_customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= current_customer.orders.count %></p>
+    </div>
+    <div class="menu-btn-modal">
+      <div class="modal-btn"><%= link_to "プロフィール", customer_show_profile_path(current_customer.id), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "本人情報", edit_customer_path(current_customer.id), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "#{ current_customer.followings.count }フォロー中", customer_followings_path(current_customer), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "#{ current_customer.followers.count }フォロワー", customer_followers_path(current_customer), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "オファーした商品", customer_offers_path(current_customer), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "オファーされた商品", customer_offered_path(current_customer), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "オファー成立商品(準備中)", customer_orders_listing_path(current_customer), class:"text-dark" %></div>
+      <div class="modal-btn"><%= link_to "オファー成立商品(取引中)",customer_orders_in_progress_path(current_customer), class:"text-dark" %></div>
+  
+    </div>
   </div>
-  <div class="menu-btn-modal">
-    <div class="modal-btn"><%= link_to "プロフィール", customer_show_profile_path(current_customer.id), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "本人情報", edit_customer_path(current_customer.id), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "#{ current_customer.followings.count }フォロー中", customer_followings_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "#{ current_customer.followers.count }フォロワー", customer_followers_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "オファーした商品", customer_offers_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "オファーされた商品", customer_offered_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "オファー成立商品(準備中)", customer_orders_listing_path(current_customer), class:"text-dark" %></div>
-    <div class="modal-btn"><%= link_to "オファー成立商品(取引中)",customer_orders_in_progress_path(current_customer), class:"text-dark" %></div>
-
-  </div>
-</div>
 <% end %>
 
 

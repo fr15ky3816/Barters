@@ -1,4 +1,6 @@
 class Public::PostCommentsController < ApplicationController
+  before_action :authenticate_customer!
+
   def create
     product = Product.find_by(id: params[:product_id])
     comment = current_customer.post_comments.new(post_comment_params)

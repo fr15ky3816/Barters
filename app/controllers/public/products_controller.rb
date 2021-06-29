@@ -1,4 +1,6 @@
 class Public::ProductsController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     if customer_signed_in?
       @product = Product.new
@@ -50,6 +52,66 @@ class Public::ProductsController < ApplicationController
     @product.update(product_params)
     redirect_to product_path(@product.id)
   end
+
+  def index_1
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
+    @products = products.where(genre_id: 1)
+  end
+  
+  def index_2
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
+    @products = products.where(genre_id: 2)
+  end
+  
+  def index_3
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
+    @products = products.where(genre_id: 3)
+  end
+  
+  def index_4
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
+    @products = products.where(genre_id: 4)
+  end
+  
+  def index_5
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
+    @products = products.where(genre_id: 5)
+  end
+  
+  def index_6
+    products = Product.where(is_sold: false, is_active: true)
+    products = products.order(updated_at: :desc)
+    customer = Customer.where(customer_attribute: "生産者")
+    products = products.where(customer_id: customer.ids)
+    @products = products.where(genre_id: 6)
+  end
+
+
+
+
+
+
+
+
+
+
+
+
 
   private
 

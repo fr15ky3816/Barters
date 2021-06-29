@@ -1,4 +1,6 @@
 class Public::LikesController < ApplicationController
+  before_action :authenticate_customer!
+  
   def create
     @product = Product.find_by(id: params[:product_id])
     @like = Like.new(product_id: params[:product_id], customer_id: current_customer.id)

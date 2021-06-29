@@ -19,6 +19,9 @@
               <i class="fas fa-bars"></i>
             </div>
             <div class="menu-right">
+              <%= link_to product_index_1_path, class:"text-success btn-right category-menu" do %>
+                <i class="fas fa-caret-square-down">カテゴリー</i>
+              <% end %>
               <% if customer_signed_in? %>
                 <%= link_to destroy_customer_session_path, method: :delete, class:"text-success btn-right" do %>
                   <i class="fas fa-sign-out-alt">ログアウト</i>
@@ -37,9 +40,13 @@
             </div>
           </div>
 
+
           <%= link_to  root_path do %>
             <%= image_tag "logo_transparent.png", class: "logo_image" %>
           <% end %>
+
+
+
 
           <% unless customer_signed_in? %>
             <%= link_to homes_guest_sign_in_path, method: :post, class:"btn btn-danger guest_sign_in_btn" do %>
@@ -65,13 +72,13 @@
     <%= render "layouts/menu_modal" %>
     <%= render "layouts/bar_menu_modal" %>
     <%= render "layouts/admin_menu_modal" %>
+    <%= render "layouts/category_menu_modal" %>
     <%= yield %>
   </body>
 </html>
 
 <script>
   $('.mypage').hover(function(){
-
     $('.menu-modal-wrapper').css("display","block");
   },function(){
       $('.menu-modal-wrapper').css("display", "none");
@@ -88,6 +95,12 @@
     $('.admin-bar-menu-modal-wrapper').css("display","block");
   },function(){
     $('.admin-bar-menu-modal-wrapper').css("display", "none");
+  });
+
+  $('.category-menu').hover(function(){
+    $('.category-menu-modal-wrapper').css("display","block");
+  },function(){
+      $('.category-menu-modal-wrapper').css("display", "none");
   });
 
 
