@@ -12,53 +12,59 @@
   </head>
 
   <body>
-    <header>
-
-        <div class="btn-right-wrapper">
-          <div class="bar-menu">
-            <i class="fas fa-bars"></i>
+    <% unless admin_signed_in? %>
+      <header>
+          <div class="btn-right-wrapper">
+            <div class="bar-menu">
+              <i class="fas fa-bars"></i>
+            </div>
+            <div class="menu-right">
+              <% if customer_signed_in? %>
+                <%= link_to destroy_customer_session_path, method: :delete, class:"text-success btn-right" do %>
+                  <i class="fas fa-sign-out-alt">ログアウト</i>
+                <% end %>
+                <%= link_to customer_path(current_customer), class:"text-success btn-right mypage" do %>
+                  <p><%= attachment_image_tag @customer, :customer_image, format: 'jpeg', fallback: 'no_image.jpg' , size: "50x50", class: "customer-image" %>マイページ</p>
+                <% end %>
+              <% else %>
+                <%= link_to new_customer_registration_path, class:"text-success btn-right" do %>
+                  <i class="fas fa-user-plus">新規登録</i>
+                <% end %>
+                <%= link_to new_customer_session_path, class:"text-success btn-right" do %>
+                  <i class="fas fa-sign-in-alt">ログイン</i>
+                <% end %>
+              <% end %>
+            </div>
           </div>
-          <div class="menu-right">
-            <% if customer_signed_in? %>
-              <%= link_to destroy_customer_session_path, method: :delete, class:"text-success btn-right" do %>
-                <i class="fas fa-sign-out-alt">ログアウト</i>
-              <% end %>
-              <%= link_to customer_path(current_customer), class:"text-success btn-right mypage" do %>
-                <p><%= attachment_image_tag @customer, :customer_image, format: 'jpeg', fallback: 'no_image.jpg' , size: "50x50", class: "customer-image" %>マイページ</p>
-              <% end %>
-            <% else %>
-              <%= link_to new_customer_registration_path, class:"text-success btn-right" do %>
-                <i class="fas fa-user-plus">新規登録</i>
-              <% end %>
-              <%= link_to new_customer_session_path, class:"text-success btn-right" do %>
-                <i class="fas fa-sign-in-alt">ログイン</i>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
 
-        <%= link_to  root_path do %>
-          <%= image_tag "logo_transparent.png", class: "logo_image" %>
-        <% end %>
-
-        <% unless customer_signed_in? %>
-          <%= link_to homes_guest_sign_in_path, method: :post, class:"btn btn-danger guest_sign_in_btn" do %>
-            <i class="fas fa-sign-in-alt">ゲストログイン（閲覧用）</i>
+          <%= link_to  root_path do %>
+            <%= image_tag "logo_transparent.png", class: "logo_image" %>
           <% end %>
-        <% end %>
 
-
-
-
-
-
-
-
-
-
-    </header>
+          <% unless customer_signed_in? %>
+            <%= link_to homes_guest_sign_in_path, method: :post, class:"btn btn-danger guest_sign_in_btn" do %>
+              <i class="fas fa-sign-in-alt">ゲストログイン（閲覧用）</i>
+            <% end %>
+          <% end %>
+      </header>
+    <% else %>
+      <header>
+          <div class="btn-right-wrapper">
+            <div class="admin-bar-menu">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+          <%= link_to  admins_products_path do %>
+            <%= image_tag "logo_transparent.png", class: "logo_image" %>
+          <% end %>
+          <div class="admin-login">
+            <h8>管理者ログイン中</h8>
+          </div>
+      </header>
+    <% end %>
     <%= render "layouts/menu_modal" %>
     <%= render "layouts/bar_menu_modal" %>
+    <%= render "layouts/admin_menu_modal" %>
     <%= yield %>
   </body>
 </html>
@@ -77,4 +83,12 @@
   },function(){
     $('.bar-menu-modal-wrapper').css("display", "none");
   });
+
+  $('.admin-bar-menu').hover(function(){
+    $('.admin-bar-menu-modal-wrapper').css("display","block");
+  },function(){
+    $('.admin-bar-menu-modal-wrapper').css("display", "none");
+  });
+
+
 </script>

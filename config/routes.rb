@@ -44,6 +44,16 @@ Rails.application.routes.draw do
     get "product/order/complete" => "orders#complete"
   end
 
+  namespace :admins do
+    resources :customers, only: [:index, :show, :edit, :destroy, :update]
+    resources :products, only: [:index, :show, :edit,] do
+     resources :offers
+     resource :orders
+    end
+  end
+
+
+
   root to: "homes#top"
   get "/about" => "homes#about"
   post "homes/guest_sign_in" => "homes#guest_sign_in"

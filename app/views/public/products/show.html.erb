@@ -41,6 +41,8 @@
         <% else %>
           <%= link_to "オファー", new_product_offer_path(@product.id), class: "btn btn-danger w-100" %>
         <% end %>
+      <% elsif admin_signed_in? %>
+        <%= link_to "編集する(管理者)", edit_admins_product_path(@product.id), class: "btn btn-danger w-100" %>
       <% end %>
 
       <div class="likes_buttons" >
@@ -63,9 +65,13 @@
           <% if customer_signed_in? %>
             <% if post_comment.customer.id == current_customer.id && @product.is_sold == false %>
               <div class="comment-delete">
-                <%= link_to "削除", product_post_comment_path(@product.id, post_comment.id), method: :delete %>
+                <%= link_to "削除", product_post_comment_path(@product.id, post_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
               </div>
             <% end %>
+          <% elsif admin_signed_in? %>
+            <div class="comment-delete">
+              <%= link_to "削除(管理者)", product_post_comment_path(@product.id, post_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            </div>
           <% end %>
         <% end %>
       </div>

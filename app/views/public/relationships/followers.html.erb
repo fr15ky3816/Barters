@@ -18,9 +18,9 @@
                     <%= attachment_image_tag customer, :customer_image, size: "30x30", fallback: 'no_image.jpg',class: "customer-image" %><br>
                     <%= customer.shop_name %><br>
                     <% if current_customer.following?(customer) %>
-                        <%= link_to "-Unfollow", customer_relationships_path(customer.id), method: :delete %>
+                        <%= link_to "-Unfollow", customer_relationships_path(customer.id), method: :delete, class: "btn btn-secondary follow-customer-btn" %>
                     <% else %>
-                      <%= link_to "+Follow", customer_relationships_path(customer.id), method: :post %>
+                      <%= link_to "+Follow", customer_relationships_path(customer.id), method: :post, class: "btn btn-danger follow-customer-btn" %>
                     <% end %>
 
                 </div>
@@ -28,8 +28,13 @@
 
             <% end %>
           <% end %>
+
+
         <% end %>
       </div>
+
+
+
 
 
 

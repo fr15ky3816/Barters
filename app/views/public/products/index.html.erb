@@ -24,6 +24,7 @@
         </div>
       </div>
 
+      <% unless @customer.products.where(is_sold: false, is_active: true).empty? %>
       <div class="row">
         <div class="col-12">
           <div class="mypage-products">
@@ -44,7 +45,17 @@
           </div>
         </div>
       </div>
+      <% else %>
+      <div class="row">
+        <div class="col-12">
+          <div class="mypage-products">
+            <h6>まだ商品はありません</h6>
+          </div>
+        </div>
+      </div>
+      <% end %>
 
+      <% unless @customer.products.where(is_sold: true).empty? %>
       <div class="row">
         <div class="col-12">
           <div class="mypage-products">
@@ -67,8 +78,10 @@
           </div>
         </div>
       </div>
+      <% end %>
 
       <% if @customer == current_customer %>
+      <% unless @customer.products.where(is_active: false).empty? %>
       <div class="row">
         <div class="col-12">
           <div class="mypage-products">
@@ -91,6 +104,7 @@
           </div>
         </div>
       </div>
+      <% end%>
       <% end %>
 
 

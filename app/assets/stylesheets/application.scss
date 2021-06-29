@@ -77,6 +77,15 @@ body {
   margin-right: 30px;
 }
 
+.admin-login {
+  line-height: 100px;
+  color: red;
+  margin-left: 70px;
+
+
+}
+
+
 .btn-right {
   font-size: 30px;
   display: inline-block;
@@ -89,6 +98,16 @@ body {
   display: none;
   font-size: 70px;
 }
+
+.admin-bar-menu {
+  display: block;
+
+}
+.admin-bar-menu i{
+  font-size: 70px;
+  line-height: 100px;
+}
+
 
 
 
@@ -157,7 +176,16 @@ body {
   border-radius: 100%;
 }
 
-
+.admin-bar-menu-modal-wrapper {
+  width: 300px;
+  border: 1px solid #CCCCCC;
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  z-index: 100;
+  display: none;
+  background-color: white;
+}
 
 
 
@@ -380,6 +408,7 @@ body {
   background-size: cover;
   text-shadow: 0.5px 0.5px #CCCCCC;
   padding: 10px;
+  color: black;
 }
 .mypage-products {
   text-align: center;
@@ -660,6 +689,9 @@ body {
   width: 80%;
 }
 
+.follow-customer-btn {
+  line-height: 10px;
+}
 
 
 

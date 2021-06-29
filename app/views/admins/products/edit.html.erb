@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 plate">
+
+    <div class="edit-header">
+      <p>管理編集画面</p>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <%= link_to customer_product_index_path(@customer.id) do %>
+          <div class="mypage-profile">
+            <%= attachment_image_tag @customer, :customer_image, size: "100x100", format: 'jpeg', fallback: 'no_image.jpg' ,class: "customer-image" %>
+            <h5><%= @customer.shop_name %>さん</h5>
+            <h6>id: <%= @customer.id %>&nbsp;&nbsp;&nbsp;&nbsp;商品id: <%= @product.id %></h6>
+
+            <p>出品数:<%= @customer.products.count %>&nbsp;&nbsp;&nbsp;&nbsp;取引数:<%= @customer.orders.count %></p>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="edit-image-wrapper">
+      <div class="edit-image-title">
+        <h5>出品画像</h5>
+        <p>最大3枚までアップロードできます</p>
+      </div>
+
+
+      <div class="edit-image-image-block">
+        <div class="edit-image-image">
+          <%= attachment_image_tag @product.product_images[0], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "edit-product_image rounded" %>
+        </div>
+        <% unless @product.product_images[0].nil? %>
+          <%= link_to "削除", product_image_path(@product.id, @product.product_images[0].id), method: :delete %>
+        <% end %>
+      </div>
+
+      <div class="edit-image-image-block">
+        <div class="edit-image-image">
+          <%= attachment_image_tag @product.product_images[1], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "edit-product_image rounded" %>
+        </div>
+        <% unless @product.product_images[1].nil? %>
+          <%= link_to "削除", product_image_path(@product.id, @product.product_images[1].id), method: :delete %>
+        <% end %>
+      </div>
+
+      <div class="edit-image-image-block">
+        <div class="edit-image-image">
+          <%= attachment_image_tag @product.product_images[2], :image, format: 'jpeg', fallback: 'no_image.jpg', size: '250x250', class: "edit-product_image rounded" %>
+        </div>
+        <% unless @product.product_images[2].nil? %>
+          <%= link_to "削除", product_image_path(@product.id, @product.product_images[2].id), method: :delete %>
+        <% end %>
+      </div>
+
+
+    </div>
+
+    <%= form_with model: @product, local: true do |f| %>
+      <%= f.attachment_field :product_images_images, multiple: true %>
+      <p>アップしたい画像を全て添付してください。前に保存されていた画像は破棄されます。<br>
+      Ctrlを押しながらクリックで複数追加できます。</p>
+      <h4>商品名</h4>
+      <%= f.text_field :name, class: "w-100" %>
+      <h4>説明</h4>
+      <%= f.text_area :description, rows: "5", class:"w-100" %>
+      <div class="actions">
+        <%= f.submit '商品の編集', class:"btn btn-danger w-100" %>
+      </div>
+    <% end %>
+
+    <% if @product.is_active == true %>
+      <%= form_with model: @product, local: true do |f| %>
+        <div class="actions">
+          <%= f.hidden_field :is_active, value: false %>
+          <%= f.submit '出品を停止する', class:"btn btn-secondary w-100" %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= form_with model: @product, local: true do |f| %>
+        <div class="actions">
+          <%= f.hidden_field :is_active, value: true %>
+          <%= f.submit '出品を再開する', class:"btn btn-success w-100" %>
+        </div>
+      <% end %>
+    <% end %>
+
+
+    <div class="actions">
+      <p>or</p>
+    </div>
+    <div class="actions">
+      <%= link_to "商品を削除する", product_path(@product), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-secondary w-100" %>
+    </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
