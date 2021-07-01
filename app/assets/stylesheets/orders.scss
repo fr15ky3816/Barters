@@ -1,3 +1,28 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+/* オーダー　newページ */
+
+.order-new-header {
+  border-bottom: 1px solid #CCCCCC;
+  line-height: 50px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+
+}
+
+/*　商品内容はオファー詳細ページと同様 */
+
+.offer-accept-btn {
+  text-align: center;
+  margin: 20px;
+}
+
+/*  オーダー一覧 */
+
+/*  オファー一覧ページと同様  */
+

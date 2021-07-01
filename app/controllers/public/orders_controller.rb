@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new
-    @product = Product.find(params[:product_id])
+    @product = Product.find_by(order_product_id: params[:product_id])
     @offer = Offer.find_by(offer_product_id: @product.id)
     @order = Order.new
   end
@@ -48,15 +48,15 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:product_id])
+    @order = Order.find_by(order_product_id: params[:product_id])
   end
 
   def update
-    @order = Order.find(params[:product_id])
+    @order = Order.find_by(order_product_id: params[:product_id])
     if @order = Order.update(order_params)
       redirect_to customer_path(current_customer)
     else
-      @order = Order.find(params[:product_id])
+      @order = Order.find_by(order_product_id: params[:product_id])
       render "public/orders/show"
     end
   end

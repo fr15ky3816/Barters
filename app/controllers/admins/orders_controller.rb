@@ -24,16 +24,16 @@ class Admins::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:product_id])
+    @order = Order.find_by(order_product_id: params[:product_id])
     @customer = Customer.find_by(id: params[:customer_id])
   end
 
   def update
-    @order = Order.find(params[:product_id])
+    @order = Order.find_by(order_product_id: params[:product_id])
     if @order = Order.update(order_params)
       redirect_to admins_customer_path(params[:customer_id])
     else
-      @order = Order.find(params[:product_id])
+      @order = Order.find_by(order_product_id: params[:product_id])
       render "show"
     end
   end

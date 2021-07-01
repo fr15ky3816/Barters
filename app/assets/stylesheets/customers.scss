@@ -1,3 +1,75 @@
 // Place all the styles related to the Customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+/* マイページ　*/
+
+
+.menu-list {
+  line-height: 40px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.mypage-profile {
+  text-align: center;
+  word-wrap: break-word;
+  margin-top: 10px;
+  background-image: image-url("PKbokeIMGP06701713_TP_V.jpg");
+  background-size: cover;
+  text-shadow: 0.5px 0.5px #CCCCCC;
+  padding: 10px;
+  color: black;
+}
+.mypage-products {
+  text-align: center;
+  border-bottom: 1px solid #CCCCCC;
+
+}
+.mypage-sold-wrap {
+  background-color: red;
+  color: white;
+  height: 30px;
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  opacity: 0.7;
+
+}
+
+.mypage-is-active-wrap {
+  background-color: #CCCCCC;
+  color: white;
+  height: 30px;
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  opacity: 0.7;
+
+}
+
+
+/*  プロフィール編集ページ */
+
+.profile-header {
+  line-height: 50px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+
+/*  本人情報編集ページ */
+.customer-edit-header {
+  line-height: 50px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.profile-field h7{
+  font-weight: bold;
+}

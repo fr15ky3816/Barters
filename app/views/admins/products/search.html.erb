@@ -13,6 +13,16 @@
                 <div class="products_image">
                   <%= attachment_image_tag product.product_images.first, :image, fallback: 'no_image.jpg', class: "product_image" %>
                 </div>
+                <% if product.is_sold == true %>
+                <div class="mypage-sold-wrap">
+                  <p>sold out</p>
+                </div>
+                <% end %>
+                <% if product.is_active == false %>
+                <div class="mypage-is-active-wrap">
+                  <p>出品停止中</p>
+                </div>
+                <% end %>
                 <p class="products_name"><%= product.name %></p>
               </div>
             </div>

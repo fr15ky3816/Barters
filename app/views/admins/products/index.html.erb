@@ -8,9 +8,11 @@
         <%= form_with url: admins_search_path, method: :get, local: true do |f| %>
           <%= f.text_field :keyword, placeholder: "キーワードを入力" %>
           <%= f.select :is_active, [["出品中", true],["出品停止中", false]] %>
-          <%= f.select :is_sold, [["販売中", false],["売却済み", true]] %>
+          <%= f.select :is_sold, [["販売中", false],["売却済み", true]] %><br>
+          <%= f.label :"条件がなければ→" %>
+          <%= f.radio_button :search, value: "条件なし"  %>
 
-          <%= f.submit 'Search' %>
+          <%= f.submit '検索' %>
         <% end %>
       </div>
       <div class="top-menu-wrapper">

@@ -26,8 +26,14 @@ class Admins::ProductsController < ApplicationController
 
   def search
     products = Product.search(params[:keyword])
-    @products = products.where(is_sold: params[:is_sold], is_active: params[:is_active])
-    @keyword = params[:keyword]
+    unless params[:search] = "条件なし"
+      @keyword = params[:keyword]
+      return @products = products.where(is_sold: params[:is_sold], is_active: params[:is_active])
+    else
+      @products = products
+      @keyword = params[:keyword]
+    end
+
   end
 
 
