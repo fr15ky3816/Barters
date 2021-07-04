@@ -38,13 +38,12 @@
   
 ## 実装機能 
   * いいね機能、コメント機能、オファー機能、検索機能
-  * 要検討（ジャンルの階層構造gem ‘ancestry’、タグ機能）
+ 
 
 ## サイト設計図
   * ER図（https://drive.google.com/file/d/1rzE7Faidf-b73q5Ahk5mEV5Wv9OFfxNy/view?usp=sharing）
   　![田中翔太ポートフォリオ](https://user-images.githubusercontent.com/78789105/121110596-8042e400-c848-11eb-8492-eac5f5cc2e56.jpg)
-  * 画面遷移図（https://drive.google.com/file/d/1wv4DAQ76Cr2aX-Tcdc29lmVFhPlGsiiO/view?usp=sharing）
-   ![画面遷移図　田中翔太ポートフォリオ](https://user-images.githubusercontent.com/78789105/121113895-cbabc100-c84d-11eb-9615-685d4adf1e4c.png)
+  
   * アプリケーション定義書（https://drive.google.com/file/d/13ReQCO37fyGJI2jBT8msQd-JYDFHPOAo/view?usp=sharing）
   
   * テーブル定義書（https://drive.google.com/file/d/1Imqj7BhY1gPq38XG_BVY8aSZNuHeF73p/view?usp=sharing）
